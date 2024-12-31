@@ -2,13 +2,13 @@ package model.services;
 
 import java.util.List;
 
-import model.dao.CRUD;
+import model.dao.ClienteDao;
 import model.dao.DaoFactory;
 import model.entities.Cliente;
 
 public class ClienteService {
 
-	private final CRUD<Cliente> dao = DaoFactory.createClienteDaoJDBC();
+	private final ClienteDao dao = DaoFactory.createClienteDaoJDBC();
 	
 	public List<Cliente> findAll() {
 		return dao.findAll();
@@ -25,5 +25,9 @@ public class ClienteService {
 	
 	public void deleteById(Cliente obj) {
 		dao.deleteById(obj.getId());
+	}
+	
+	public List<Cliente> search(String name) {
+		return dao.search(name);
 	}
 }

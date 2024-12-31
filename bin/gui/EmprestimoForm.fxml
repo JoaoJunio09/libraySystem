@@ -120,12 +120,12 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="btPesquiarCliente" mnemonicParsing="false" prefHeight="40.0" text="Pesquisar" />
+                        <Button fx:id="btPesquisarCliente" mnemonicParsing="false" onAction="#onBtPesquisarCliente" prefHeight="40.0" text="Pesquisar" />
                      </children>
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="131.0" prefWidth="330.0" style="-fx-background-color: #A9A9A9;">
                      <children>
-                        <Label text="Selecionar Cliente:">
+                        <Label text="Lista de Clientes:">
                            <font>
                               <Font name="Eras Demi ITC" size="17.0" />
                            </font>
@@ -155,12 +155,12 @@
                               <Font size="13.0" />
                            </font>
                         </TextField>
-                        <Button fx:id="btPesquisarLivro" mnemonicParsing="false" prefHeight="40.0" text="Pesquisar" />
+                        <Button fx:id="btPesquisarLivro" mnemonicParsing="false" onAction="#onBtPesquisarLivroAction" prefHeight="40.0" text="Pesquisar" />
                      </children>
                   </HBox>
                   <VBox alignment="CENTER" prefHeight="122.0" prefWidth="348.0" style="-fx-background-color: #A9A9A9;">
                      <children>
-                        <Label text="Selecionar Livro:">
+                        <Label text="Lista de Livros:">
                            <font>
                               <Font name="Eras Demi ITC" size="17.0" />
                            </font>

@@ -13,11 +13,12 @@ import java.util.Map;
 import db.DB;
 import db.DbException;
 import model.dao.CRUD;
+import model.dao.ClienteDao;
 import model.entities.Cidade;
 import model.entities.Cliente;
 import model.entities.Estado;
 
-public class ClienteDaoJDBC implements CRUD<Cliente> {
+public class ClienteDaoJDBC implements ClienteDao {
 	
 	private Connection conn = null;
 	
@@ -188,6 +189,45 @@ public class ClienteDaoJDBC implements CRUD<Cliente> {
 		}
 	}
 	
+	@Override
+	public List<Cliente> search(String name) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT c.*,ci.*,e.*, ci.Nome AS CidadeNome, e.Nome AS EstadoNome, "
+				+ "ci.Id AS cidade_id, e.Id AS estado_id "
+				+ "FROM tb_cliente c "
+				+ "JOIN tb_cidade ci ON c.CidadeId = ci.Id "
+				+ "JOIN tb_estado e ON ci.EstadoId = e.Id "
+				+ "WHERE c.Nome LIKE '" + name + "%'";
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			List<Cliente> clientes = new ArrayList<>();
+			Map<Integer, Cidade> map = new HashMap<>();
+			
+			while (rs.next()) {
+				Estado estado = instanciaEstado(rs);
+				Cidade cidade = map.get(rs.getInt("CidadeId"));
+				
+				if (cidade == null) {
+					cidade = instanciaCidade(rs, estado);
+				}
+				
+				Cliente cliente = instanciaCliente(rs, cidade, estado);
+				clientes.add(cliente);
+			}
+			return clientes;
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(stmt);
+			DB.closeResultSet(rs);
+		}
+	}
+	
 	private Cliente instanciaCliente(ResultSet rs, Cidade cidade, Estado estado) throws SQLException {
 		Cliente cliente = new Cliente();
 		cliente.setId(rs.getInt("Id"));
@@ -217,5 +257,4 @@ public class ClienteDaoJDBC implements CRUD<Cliente> {
 		estado.setSigla(rs.getString("Sigla"));
 		return estado;
 	}
-
 }

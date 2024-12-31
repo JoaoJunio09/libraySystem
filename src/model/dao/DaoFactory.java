@@ -10,14 +10,12 @@ import model.dao.impl.FornecedorDaoJDBC;
 import model.dao.impl.LivroDaoJDBC;
 import model.entities.Categoria;
 import model.entities.Cidade;
-import model.entities.Cliente;
 import model.entities.Estado;
 import model.entities.Fornecedor;
-import model.entities.Livro;
 
 public class DaoFactory {
 
-	public static CRUD<Cliente> createClienteDaoJDBC() {
+	public static ClienteDao createClienteDaoJDBC() {
 		return new ClienteDaoJDBC(DB.getConnection());
 	}
 	
@@ -33,7 +31,7 @@ public class DaoFactory {
 		return new CategoriaDaoJDBC(DB.getConnection());
 	}
 	
-	public static CRUD<Livro> createLivroDaoJDBC() {
+	public static LivroDao createLivroDaoJDBC() {
 		return new LivroDaoJDBC(DB.getConnection());
 	}
 	

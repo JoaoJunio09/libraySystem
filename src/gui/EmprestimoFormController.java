@@ -1,5 +1,6 @@
 package gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -21,7 +22,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,6 +34,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.entities.Cliente;
 import model.entities.Emprestimo;
@@ -85,7 +91,7 @@ public class EmprestimoFormController implements Initializable {
 	private Button btCancelar;
 	
 	@FXML
-	private Button btPesquiarCliente;
+	private Button btPesquisarCliente;
 	
 	@FXML
 	private Button btPesquisarLivro;
@@ -122,6 +128,10 @@ public class EmprestimoFormController implements Initializable {
 		try {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
+			Livro livro = entity.getLivro();
+			if (updateEstoque(livro)) {
+				Alerts.showALert("Estoque atualizado", null, "Estoque do livro " + livro.getNome() + " foi atualizado para: " + livro.getEstoque(), AlertType.INFORMATION);
+			}
 			notifyDataChangeListener();
 			Utils.currentStage(event).close();
 		}
@@ -166,13 +176,8 @@ public class EmprestimoFormController implements Initializable {
 		
 		if (comboBoxLivro.getValue() == null) {
 			exception.addError("comboBoxLivro", "Selecione o Livro");
-		}		
-		obj.setLivro(comboBoxLivro.getValue());
-		
-		Livro livro = comboBoxLivro.getValue();
-		if (updateEstoque(livro)) {
-			Alerts.showALert("Estoque atualizado", null, "Estoque do livro " + livro.getNome() + " foi atualizado para: " + livro.getEstoque(), AlertType.INFORMATION);
 		}
+		obj.setLivro(comboBoxLivro.getValue());
 		
 		if (exception.getErrors().size() > 0) {
 			throw exception;
@@ -183,6 +188,48 @@ public class EmprestimoFormController implements Initializable {
 	
 	public void onBtCancelarAction(ActionEvent event) {
 		Utils.currentStage(event).close();
+	}
+	
+	public void onBtPesquisarCliente(ActionEvent event) {
+		if (clienteService == null) {
+			throw new IllegalStateException("Cliente Service was null");
+		}
+		if (txtPesquisarCliente.getText() == null) {
+			Alerts.showALert("Error search", null, "Preencha o campo de pesquisa", AlertType.ERROR);
+		}
+		
+		String txtConteudoPesquisa = txtPesquisarCliente.getText();
+		
+		List<Cliente> list = clienteService.search(txtConteudoPesquisa);
+		obsListCliente = FXCollections.observableArrayList(list);
+		if (obsListCliente.isEmpty()) {
+			Alerts.showALert("Importante", null, "Cliente " + txtConteudoPesquisa + " não encontrado", AlertType.INFORMATION);
+		}
+		else {
+			Alerts.showALert("Aviso", null, "Pesquisado! Confira o resultado na Lista de Clientes", AlertType.INFORMATION);
+			comboBoxCliente.setItems(obsListCliente);
+		}
+	}
+	
+	public void onBtPesquisarLivroAction(ActionEvent event) {
+		if (livroService == null) {
+			throw new IllegalStateException("Livro Service was null");
+		}
+		if (txtPesquisarLivro.getText() == null) {
+			Alerts.showALert("Error search", null, "Preencha o campo de pesquisa", AlertType.ERROR);
+		}
+		
+		String txtConteudoPesquisa = txtPesquisarLivro.getText();
+		
+		List<Livro> list = livroService.search(txtConteudoPesquisa);
+		obsListLivro = FXCollections.observableArrayList(list);
+		if (obsListLivro.isEmpty()) {
+			Alerts.showALert("Importante", null, "Livro " + txtConteudoPesquisa + " não encontrado", AlertType.INFORMATION);
+		}
+		else {
+			Alerts.showALert("Aviso", null, "Pesquisado! Confira o resultado na Lista de Livros", AlertType.INFORMATION);
+			comboBoxLivro.setItems(obsListLivro);
+		}
 	}
 	
 	public void onBtNovoClienteAction(ActionEvent event) {
@@ -290,10 +337,6 @@ public class EmprestimoFormController implements Initializable {
 		labelErrorDataDevolucao.setText((fields.contains("dataDevolucao") ? errors.get("dataDevolucao") : ""));
 		labelErrorCliente.setText((fields.contains("comboBoxCliente") ? errors.get("comboBoxCliente") : ""));
 		labelErrorLivro.setText((fields.contains("comboBoxLivro") ? errors.get("comboBoxLivro") : ""));
-		
-		if (fields.contains("comboBoxLivroIndisponivel")) {
-			Alerts.showALert("Erro ao selecionar o Livro", null, errors.get("comboBoxLivroIndisponivel"), AlertType.ERROR);
-		}
 	}
 	
 	private void notifyDataChangeListener() {

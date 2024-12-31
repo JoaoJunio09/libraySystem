@@ -13,10 +13,11 @@ import java.util.Map;
 import db.DB;
 import db.DbException;
 import model.dao.CRUD;
+import model.dao.LivroDao;
 import model.entities.Categoria;
 import model.entities.Livro;
 
-public class LivroDaoJDBC implements CRUD<Livro> {
+public class LivroDaoJDBC implements LivroDao {
 	
 	private Connection conn = null;
 	
@@ -174,6 +175,41 @@ public class LivroDaoJDBC implements CRUD<Livro> {
 		}
 	}
 	
+	@Override
+	public List<Livro> search(String name) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT l.*,c.*, c.Nome AS Categoria_nome, c.Descrição AS Categoria_descrição, c.Id AS Categoria_id "
+				+ "FROM tb_livro l "
+				+ "JOIN tb_categoria c ON l.CategoriaId = c.Id "
+				+ "WHERE l.Nome LIKE '" + name + "%'";
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			List<Livro> livros = new ArrayList<Livro>();
+			Map<Integer, Categoria> map = new HashMap<>();
+			
+			while (rs.next()) {
+				Categoria cat = map.get(rs.getInt("CategoriaId"));
+				if (cat == null) {
+					cat = instanciaCategoria(rs);
+					map.put(rs.getInt("CategoriaID"), cat);
+				}
+				Livro livro = instanciaLivro(rs, cat);
+				livros.add(livro);
+			}
+			return livros;
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(stmt);
+			DB.closeResultSet(rs);
+		}
+	}
+	
 	private Livro instanciaLivro(ResultSet rs, Categoria cat) throws SQLException {
 		Livro livro = new Livro();
 		livro.setId(rs.getInt("Id"));
@@ -193,5 +229,4 @@ public class LivroDaoJDBC implements CRUD<Livro> {
 		cat.setDescricao(rs.getString("Categoria_descrição"));
 		return cat;
 	}
-
 }

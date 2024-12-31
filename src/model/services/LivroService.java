@@ -4,11 +4,12 @@ import java.util.List;
 
 import model.dao.CRUD;
 import model.dao.DaoFactory;
+import model.dao.LivroDao;
 import model.entities.Livro;
 
 public class LivroService {
 	
-	private CRUD<Livro> dao = DaoFactory.createLivroDaoJDBC();
+	private LivroDao dao = DaoFactory.createLivroDaoJDBC();
 	
 	public List<Livro> findAll() {
 		return dao.findAll();
@@ -40,5 +41,9 @@ public class LivroService {
 				saveOrUpdate(livro);
 			}
 		}
+	}
+	
+	public List<Livro> search(String name) {
+		return dao.search(name);
 	}
 }
