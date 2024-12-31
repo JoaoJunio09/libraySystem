@@ -26,4 +26,19 @@ public class LivroService {
 	public void deleteById(Livro obj) {
 		dao.deleteById(obj.getId());
 	}
+	
+	public void updateDataAll() {
+		List<Livro> list = dao.findAll();
+		
+		for (Livro livro : list) {
+			if (livro.getEstoque() < 1) {
+				livro.setLivroIndisponivel();
+				saveOrUpdate(livro);
+			}
+			if (livro.getEstoque() > 0) {
+				livro.setLivroDisponivel();
+				saveOrUpdate(livro);
+			}
+		}
+	}
 }

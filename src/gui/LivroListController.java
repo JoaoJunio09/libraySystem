@@ -2,6 +2,7 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -113,20 +114,12 @@ public class LivroListController implements Initializable, DataChangeListener {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
-		List<Livro> list = service.findAll();
 		
-		for (Livro livro : list) {
-			if (livro.getEstoque() < 1) {
-				livro.setLivroIndisponivel();
-				service.saveOrUpdate(livro);
-			}
-			else {
-				livro.setLivroDisponivel();
-			}
-		}
+		service.updateDataAll();
 		
+		List<Livro> list = service.findAll();		
 		obsList = FXCollections.observableArrayList(list);
-		tableViewLivro.setItems(obsList);	
+		tableViewLivro.setItems(obsList);
 		
 		initEditButtons();
 		initRemoveButtons();
@@ -214,6 +207,6 @@ public class LivroListController implements Initializable, DataChangeListener {
 
 	@Override
 	public void dataChanged() {
-		updateTableView();		
+		updateTableView();
 	}
 }

@@ -169,6 +169,11 @@ public class EmprestimoFormController implements Initializable {
 		}		
 		obj.setLivro(comboBoxLivro.getValue());
 		
+		Livro livro = comboBoxLivro.getValue();
+		if (updateEstoque(livro)) {
+			Alerts.showALert("Estoque atualizado", null, "Estoque do livro " + livro.getNome() + " foi atualizado para: " + livro.getEstoque(), AlertType.INFORMATION);
+		}
+		
 		if (exception.getErrors().size() > 0) {
 			throw exception;
 		}
@@ -258,22 +263,23 @@ public class EmprestimoFormController implements Initializable {
 		comboBoxCliente.setItems(obsListCliente);
 	}
 	
-	// associando comboBox do Livro
 	public void loadAssociatedLivro() {
 		if (livroService == null) {
 			throw new IllegalStateException("Livro Service was null");
 		}
 		
-		List<Livro> listObs = livroService.findAll();
-		List<Livro> list = new ArrayList<>();
+		livroService.updateDataAll();
 		
-		for (Livro livro : listObs) {
+		List<Livro> list = livroService.findAll();	
+		List<Livro> listObs = new ArrayList<>();
+		
+		for (Livro livro : list) {
 			if (livro.getDisponibilidade().equals(livro.getLivroDisponivel())) {
-				list.add(livro);
+				listObs.add(livro);
 			}
 		}
 		
-		obsListLivro = FXCollections.observableArrayList(list);
+		obsListLivro = FXCollections.observableArrayList(listObs);
 		comboBoxLivro.setItems(obsListLivro);
 	}
 	
@@ -293,6 +299,18 @@ public class EmprestimoFormController implements Initializable {
 	private void notifyDataChangeListener() {
 		for (DataChangeListener listener : dataChangeListeners) {
 			listener.dataChanged();
+		}
+	}
+	
+	private boolean updateEstoque(Livro livro) {
+		try {
+			livro.setEstoque(livro.getEstoque() - 1);
+			livroService.saveOrUpdate(livro);
+			return true;
+		}
+		catch (DbException e) {
+			Alerts.showALert("Error database", null, e.getMessage(), AlertType.ERROR);
+			return false;
 		}
 	}
 	
