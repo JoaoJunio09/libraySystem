@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="650.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.LivroFormController">
+   <children>
+      <BorderPane prefHeight="650.0" prefWidth="850.0">
+         <top>
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="800.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Cadastrar novo Livro" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
+         <center>
+            <VBox alignment="TOP_CENTER" prefHeight="364.0" prefWidth="564.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="537.0" prefWidth="564.0" style="-fx-border-color: bottom black;">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.39996337890625" minWidth="10.0" prefWidth="122.3999755859375" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.20001220703125" minWidth="10.0" prefWidth="274.4000244140625" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="435.2000122070312" minWidth="10.0" prefWidth="167.59998779296882" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" text="Entre com os dados:" GridPane.columnIndex="1">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Id:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="txtId" editable="false" prefHeight="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtNome" prefHeight="40.0" promptText="digite o nome" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label text="Nome:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                           <children>
+                              <Button fx:id="btSalvar" mnemonicParsing="false" onAction="#onBtSalvarAction" text="Salvar">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Button>
+                              <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" text="Cancelar">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <Label text="Descrição:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label fx:id="labelErrorNome" text="Digite o nome" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="labelErrorSigla" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label text="Autor:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Estoque:" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Disponibilidade:" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <Label text="Categoria:" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="Ebrima" size="15.0" />
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                        <TextField fx:id="txtAutor" prefHeight="45.0" promptText="digite o autor" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtEstoque" prefHeight="45.0" promptText="estoque em unidades" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="txtDisponibilidade" editable="false" prefHeight="45.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <ComboBox fx:id="comboBoxCategoria" prefHeight="46.0" prefWidth="293.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <Label fx:id="labelErrorAutor" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="labelErrorEstoque" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="labelErrorCategoria" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <TextArea fx:id="txtAreaDescricao" prefHeight="74.0" prefWidth="291.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="15.0" />
+                           </font></TextArea>
+                     </children>
+                  </GridPane>
+                  <VBox alignment="BOTTOM_LEFT" prefHeight="99.0" prefWidth="564.0">
+                     <children>
+                        <ImageView fitHeight="58.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/logo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+               <effect>
+                  <Blend />
+               </effect>
+            </VBox>
+         </center>
+         <right>
+            <VBox prefHeight="430.0" prefWidth="236.0" style="-fx-background-color: #696969;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="Instruões para cadastro:" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="1. Digite o nome" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="2. Digite a descrição do livro" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="3. Digite também o nome do autor" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="4. Coloque as unidades do livro" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="5. Não esqueça da disponibilidade" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="6. Selecione a categoria do livro" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="7. Depois de tudo certo, salve" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="8. Cancele se houver algum erro" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="9. Dúvidas, entre em contato" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</Pane>

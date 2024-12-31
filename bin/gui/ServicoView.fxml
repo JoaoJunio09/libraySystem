@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ServicoViewController">
+   <content>
+      <VBox prefHeight="592.0" prefWidth="990.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0" style="-fx-background-color: darkblue;">
+               <children>
+                  <ImageView fitHeight="106.0" fitWidth="165.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label text="Library System - Minha Biblioteca" textFill="WHITE">
+                     <font>
+                        <Font name="Century751 BT Italic" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <BorderPane prefHeight="445.0" prefWidth="883.0">
+               <center>
+                  <HBox alignment="CENTER" prefHeight="333.0" prefWidth="883.0" spacing="70.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="294.0" prefWidth="223.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fitHeight="174.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/rb_7040.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="btNovoEmprestimo" mnemonicParsing="false" onAction="#onBtNovoEmprestimoAction" style="-fx-background-color: blue;" text="Emprestimo" textFill="WHITE">
+                                 <font>
+                                    <Font name="BebasNeue" size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="294.0" prefWidth="223.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fitHeight="174.0" fitWidth="171.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/rb_6156.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="btNovaDevolucao" mnemonicParsing="false" onAction="#onBtNovaDevolucaoAction" style="-fx-background-color: red;" text="devolução" textFill="WHITE">
+                                 <font>
+                                    <Font name="BebasNeue" size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                              </Button>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="294.0" prefWidth="223.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fitHeight="158.0" fitWidth="162.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/client.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="btNovoCliente" mnemonicParsing="false" onAction="#onBtNovoClienteAction" style="-fx-background-color: green;" text="Cliente" textFill="WHITE">
+                                 <font>
+                                    <Font name="BebasNeue" size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="294.0" prefWidth="223.0" style="-fx-border-color: black;">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="152.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../img/stack-of-books.png" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="btNovoLivro" mnemonicParsing="false" onAction="#onBtNovoLivroAction" style="-fx-background-color: purple;" text="livro" textFill="WHITE">
+                                 <font>
+                                    <Font name="BebasNeue" size="20.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="OPEN_HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </VBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets top="50.0" />
+                     </BorderPane.margin>
+                  </HBox>
+               </center>
+               <right>
+                  <VBox prefHeight="375.0" prefWidth="302.0" style="-fx-background-color: #ADD8E6;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Intruções para Empréstimo:">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="1. Já pegou um livro antes?">
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="2. Possui cadastro?">
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="3. Está com algum livro emprestado?">
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="4. Possui alguma preferência de livro?">
+                           <font>
+                              <Font name="Berlin Sans FB" size="17.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" top="10.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </VBox>
+               </right>
+               <bottom>
+                  <VBox alignment="CENTER" prefHeight="70.0" prefWidth="883.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" text="Desenvolvido por/ Dev João Junio">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Sebastianópolis do sul, SP" />
+                     </children>
+                  </VBox>
+               </bottom>
+            </BorderPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

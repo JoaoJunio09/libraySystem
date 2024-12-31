@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ClienteListController">
+   <children>
+      <Label text="Registro - Cliente">
+         <font>
+            <Font name="Ebrima" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="5.0" />
+         </VBox.margin>
+      </Label>
+      <ToolBar prefHeight="50.0" prefWidth="1000.0">
+         <items>
+            <Button fx:id="btNovo" mnemonicParsing="false" onAction="#onBtNovoAction" text="Novo">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="btDetalhes" mnemonicParsing="false" onAction="#onBtDetalhesAction" text="Detalhes">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </items>
+      </ToolBar>
+      <TableView fx:id="tableViewCliente" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="tableColumnId" prefWidth="75.99996644258499" text="Id" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="109.5999755859375" text="Nome" />
+            <TableColumn fx:id="tableColumnSobrenome" prefWidth="108.80000305175781" text="Sobrenome" />
+            <TableColumn fx:id="tableColumnDataNascimento" prefWidth="127.20001220703125" text="Data de Nascimento" />
+            <TableColumn fx:id="tableColumnTelefone" prefWidth="95.199951171875" text="Telefone" />
+            <TableColumn fx:id="tableColumnEmail" prefWidth="107.99993896484375" text="E-mail" />
+            <TableColumn fx:id="tableColumnEndereco" prefWidth="112.79998779296875" text="Endereço" />
+            <TableColumn fx:id="tableColumnCidade" prefWidth="111.20001220703125" text="Cidade" />
+            <TableColumn fx:id="tableColumnEDIT" prefWidth="76.0" />
+            <TableColumn fx:id="tableColumnREMOVE" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
