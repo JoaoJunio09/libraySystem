@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
@@ -29,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Cliente;
@@ -104,6 +105,22 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	public void onBtFiltragemCompletaAction(ActionEvent event) {
 		Stage parent = Utils.currentStage(event);
 		createFilter("/gui/EmprestimoFiltragemCompleta.fxml", parent);
+	}
+	
+	@FXML
+	public void onBtLivroAction() {
+		loadView("Registro - Livro", "/gui/LivroList.fxml", (LivroListController controller) -> {
+			controller.setLivroService(new LivroService());
+			controller.updateTableView();
+		});
+	}
+	
+	@FXML
+	public void onBtClienteAction() {
+		loadView("Registro - Cliente", "/gui/ClienteList.fxml", (ClienteListController controller) -> {
+			controller.setClienteService(new ClienteService());
+			controller.updateTableView();
+		});
 	}
 	
 	@FXML
@@ -241,7 +258,28 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 		catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showALert("IO Exception", "Erro ao carregar", e.getMessage(), AlertType.ERROR);
-		}	
+		}
+	}
+	
+	private synchronized <T> void loadView(String title, String absoluteName, Consumer<T> initializing) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			VBox empVBox = loader.load();
+			
+			Scene empScene = new Scene(empVBox);
+			Stage empStage = new Stage();
+			empStage.setScene(empScene);
+			empStage.setTitle(title);
+			empStage.setMaximized(true);
+			empStage.show();
+			
+			T controller = loader.getController();
+			initializing.accept(controller);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			Alerts.showALert("IO Exception", "Erro ao carregar", e.getMessage(), AlertType.ERROR);
+		}
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package model.services;
 
 import java.util.List;
 
-import model.dao.CRUD;
 import model.dao.DaoFactory;
 import model.dao.LivroDao;
 import model.entities.Livro;

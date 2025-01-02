@@ -98,7 +98,7 @@
          <center>
             <VBox prefHeight="629.0" prefWidth="370.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="BASELINE_CENTER" prefHeight="170.0" prefWidth="385.0">
+                  <HBox alignment="BASELINE_CENTER" prefHeight="166.0" prefWidth="282.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="155.0" prefWidth="171.0">
                            <children>
@@ -142,7 +142,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <HBox alignment="BASELINE_CENTER" prefHeight="170.0" prefWidth="200.0">
+                  <HBox alignment="BASELINE_CENTER" prefHeight="145.0" prefWidth="282.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
                            <children>
@@ -189,7 +189,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="170.0" prefWidth="320.0">
+                  <HBox alignment="CENTER" prefHeight="147.0" prefWidth="282.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
                            <children>
@@ -198,7 +198,7 @@
                                     <Image url="@../../img/stack-of-books.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btConcluido" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="42.0" prefWidth="120.0" text="Livro">
+                              <Button fx:id="btConcluido" mnemonicParsing="false" onAction="#onBtLivroAction" prefHeight="42.0" prefWidth="120.0" text="Livro">
                                  <font>
                                     <Font name="BebasNeue" size="16.0" />
                                  </font>
@@ -218,7 +218,7 @@
                                     <Image url="@../../img/client.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" prefHeight="42.0" prefWidth="120.0" text="Cliente">
+                              <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtClienteAction" prefHeight="42.0" prefWidth="120.0" text="Cliente">
                                  <font>
                                     <Font name="BebasNeue" size="16.0" />
                                  </font>
@@ -236,7 +236,7 @@
                         <Insets top="20.0" />
                      </VBox.margin>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="170.0" prefWidth="320.0">
+                  <HBox alignment="CENTER" prefHeight="138.0" prefWidth="282.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
                            <children>
