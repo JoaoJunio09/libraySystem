@@ -5,16 +5,21 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import model.services.ClienteService;
 import model.services.EmprestimoService;
+import model.services.LivroService;
 
 public class ServicoViewController implements Initializable {
 	
@@ -32,7 +37,7 @@ public class ServicoViewController implements Initializable {
 	
 	@FXML
 	public void onBtNovoEmprestimoAction() {
-		loadViewServico("/gui/EmprestimoList.fxml", (EmprestimoListController controller) -> {
+		loadViewServico("Controle - Empréstimo", "/gui/EmprestimoList.fxml", (EmprestimoListController controller) -> {
 			controller.setEmprestimoService(new EmprestimoService());
 			controller.updateTableView();
 		});
@@ -45,19 +50,25 @@ public class ServicoViewController implements Initializable {
 	
 	@FXML
 	public void onBtNovoClienteAction() {
-		System.out.println("onBtNovoClienteAction");
+		loadViewServico("Registro - Cliente", "/gui/ClienteList.fxml", (ClienteListController controller) -> {
+			controller.setClienteService(new ClienteService());
+			controller.updateTableView();
+		});
 	}
 	
 	@FXML
 	public void onBtNovoLivroAction() {
-		System.out.println("onBtNovoLivroAction");
+		loadViewServico("Registro - Livro", "/gui/LivroList.fxml", (LivroListController controller) -> {
+			controller.setLivroService(new LivroService());
+			controller.updateTableView();
+		});
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 	}
 	
-	private synchronized <T> void loadViewServico(String absoluteName, Consumer<T> initializing) {
+	private synchronized <T> void loadViewServico(String title, String absoluteName, Consumer<T> initializing) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			VBox empVBox = loader.load();
@@ -65,7 +76,7 @@ public class ServicoViewController implements Initializable {
 			Scene empScene = new Scene(empVBox);
 			Stage empStage = new Stage();
 			empStage.setScene(empScene);
-			empStage.setTitle("Controle - Emprestimo");
+			empStage.setTitle(title);
 			empStage.setMaximized(true);
 			empStage.show();
 			

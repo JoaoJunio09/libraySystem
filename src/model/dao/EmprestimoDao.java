@@ -16,4 +16,6 @@ public interface EmprestimoDao {
 	List<Emprestimo> findAll();
 	
 	List<Emprestimo> filtrar(String dataInicial, String dataFinal);
+
+	List<Emprestimo> filtragemCompleta(String sql);
 }

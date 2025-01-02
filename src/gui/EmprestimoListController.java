@@ -225,6 +225,8 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 			Pane empFiltragemView = loader.load();
 			
 			EmprestimoFiltragemCompletaController controller = loader.getController();
+			controller.setServices(new EmprestimoService());
+			controller.associatedStatusEmprestimo();
 			
 			Stage stageDialog = new Stage();
 			stageDialog.setTitle("Filtragem completa - Empréstimo");

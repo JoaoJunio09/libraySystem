@@ -266,6 +266,63 @@ public class EmprestimoDaoJDBC implements EmprestimoDao {
 		}
 	}
 	
+	@Override
+	public List<Emprestimo> filtragemCompleta(String sqlComand) {
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT emp.*,cli.*,liv.*,cid.*,est.*, "
+					+ "cid.Nome AS Cidade_nome, cid.Id AS Cidade_id, "
+					+ "est.Nome AS Estado_nome, est.Id AS Estado_id, "
+					+ "liv.Nome AS Livro_nome, liv.Id AS Livro_id, liv.Descrição As Livro_descrição, "
+					+ "cat.Id AS Categoria_id, cat.Nome Categoria_nome, cat.Descrição AS Categoria_descrição, "
+					+ "cli.Id AS Cliente_id "
+					+ "FROM tb_emprestimo emp "
+					+ "JOIN tb_cliente cli ON emp.ClienteId = cli.Id "
+					+ "JOIN tb_livro liv ON emp.LivroId = liv.Id "
+					+ "JOIN tb_categoria cat ON liv.CategoriaId = cat.Id "
+					+ "JOIN tb_cidade cid ON cli.CidadeId = cid.Id "
+					+ "JOIN tb_estado est ON cid.EstadoId = est.Id "
+					+ sqlComand;
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			
+			List<Emprestimo> emps = new ArrayList<Emprestimo>();
+			Map<Integer, Cliente> mapCliente = new HashMap<>();
+			Map<Integer, Livro> mapLivro= new HashMap<>();
+			
+			while (rs.next()) {
+				
+				Estado estado = instanciaEstado(rs);
+				Cidade cidade = instanciaCidade(rs, estado);
+				Categoria cat = instanciaCategoria(rs);
+				
+				Cliente cliente = mapCliente.get(rs.getInt("ClienteId"));
+				if (cliente == null) {
+					cliente = instanciaCliente(rs, cidade, estado);
+					mapCliente.put(rs.getInt("ClienteId"), cliente);
+				}
+				
+				Livro livro = mapLivro.get(rs.getInt("LivroId"));
+				if (livro == null) {
+					livro = instanciaLivro(rs, cat);
+					mapLivro.put(rs.getInt("LivroId"), livro);
+				}
+				
+				Emprestimo emp = instanciaEmprestimo(rs, cliente, livro);
+				emps.add(emp);
+			}
+			return emps;
+		}
+		catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}
+		finally {
+			DB.closeStatement(stmt);
+			DB.closeResultSet(rs);
+		}
+	}
+	
 	private Emprestimo instanciaEmprestimo(ResultSet rs, Cliente cliente, Livro livro) throws SQLException {
 		Emprestimo emp = new Emprestimo();
 		emp.setId(rs.getInt("Id"));

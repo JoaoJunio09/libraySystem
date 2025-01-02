@@ -1,6 +1,7 @@
 package model.services;
 
 import java.util.List;
+import java.util.Map;
 
 import model.dao.DaoFactory;
 import model.dao.EmprestimoDao;
@@ -29,5 +30,9 @@ public class EmprestimoService {
 	
 	public List<Emprestimo> filtrar(String dataEmprestimo, String dataDevolucao) {
 		return dao.filtrar(dataEmprestimo, dataDevolucao);
+	}
+	
+	public List<Emprestimo> filtragemCompleta(String sql) {
+		return dao.filtragemCompleta(sql);
 	}
 }

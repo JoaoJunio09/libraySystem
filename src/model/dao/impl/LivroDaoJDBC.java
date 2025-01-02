@@ -182,7 +182,7 @@ public class LivroDaoJDBC implements LivroDao {
 		String sql = "SELECT l.*,c.*, c.Nome AS Categoria_nome, c.Descrição AS Categoria_descrição, c.Id AS Categoria_id "
 				+ "FROM tb_livro l "
 				+ "JOIN tb_categoria c ON l.CategoriaId = c.Id "
-				+ "WHERE l.Nome LIKE '" + name + "%'";
+				+ "WHERE l.Nome LIKE '" + name + "%' and l.Disponibilidade = 'Disponível'";
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();

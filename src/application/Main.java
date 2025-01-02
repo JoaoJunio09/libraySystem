@@ -22,9 +22,7 @@ public class Main extends Application {
 			
 			primaryStage.setScene(loginScene);
 			primaryStage.setTitle("Login System");
-			primaryStage.show();
-			
-			
+			primaryStage.show();			
 		} 
 		catch (IOException e) {
 			e.printStackTrace();

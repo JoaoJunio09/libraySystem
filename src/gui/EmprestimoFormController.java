@@ -127,13 +127,18 @@ public class EmprestimoFormController implements Initializable {
 		}
 		try {
 			entity = getFormData();
-			service.saveOrUpdate(entity);
-			Livro livro = entity.getLivro();
-			if (updateEstoque(livro)) {
-				Alerts.showALert("Estoque atualizado", null, "Estoque do livro " + livro.getNome() + " foi atualizado para: " + livro.getEstoque(), AlertType.INFORMATION);
+			if (entity.getLivro().getDisponibilidade().equals(entity.getLivro().getLivroIndisponivel())) {
+				Alerts.showALert("Livro Indisponível", null, "O Livro selecionado está INDISPONÍVEL", AlertType.ERROR);
 			}
-			notifyDataChangeListener();
-			Utils.currentStage(event).close();
+			else {
+				service.saveOrUpdate(entity);
+				Livro livro = entity.getLivro();
+				if (updateEstoque(livro)) {
+					Alerts.showALert("Estoque atualizado", null, "Estoque do livro " + livro.getNome() + " foi atualizado para: " + livro.getEstoque(), AlertType.INFORMATION);
+				}
+				notifyDataChangeListener();
+				Utils.currentStage(event).close();
+			}		
 		}
 		catch (ValidationException e) {
 			setMessageError(e.getErrors());
@@ -268,7 +273,7 @@ public class EmprestimoFormController implements Initializable {
 		if (entity.getDataEmprestimo() != null) {
 			dpDataEmprestimo.setValue(LocalDate.ofInstant(entity.getDataEmprestimo().toInstant(), ZoneId.systemDefault()));
 		}
-		if (entity.getDataDevolucao() != null) {
+		if (entity.getDataDevolucao() != null) { 
 			dpDataDevolucao.setValue(LocalDate.ofInstant(entity.getDataDevolucao().toInstant(), ZoneId.systemDefault()));
 		}
 		
@@ -336,7 +341,7 @@ public class EmprestimoFormController implements Initializable {
 		labelErrorDataDevolucao.setText((fields.contains("dataEmprestimo") ? errors.get("dataEmprestimo") : ""));
 		labelErrorDataDevolucao.setText((fields.contains("dataDevolucao") ? errors.get("dataDevolucao") : ""));
 		labelErrorCliente.setText((fields.contains("comboBoxCliente") ? errors.get("comboBoxCliente") : ""));
-		labelErrorLivro.setText((fields.contains("comboBoxLivro") ? errors.get("comboBoxLivro") : ""));
+		labelErrorLivro.setText((fields.contains("comboBoxLivro") || fields.contains("comboBoxLivroIndisponivel") ? errors.get("comboBoxLivro") : ""));
 	}
 	
 	private void notifyDataChangeListener() {
