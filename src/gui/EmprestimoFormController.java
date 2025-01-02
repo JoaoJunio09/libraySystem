@@ -369,7 +369,7 @@ public class EmprestimoFormController implements Initializable {
 	}
 	
 	private void initializeComboBoxLivro() {
-		Callback<ListView<Livro>, ListCell<Livro>> factory = lv -> new ListCell<Livro>() {
+		Callback<ListView<Livro>, ListCell<Livro>> factory = lv -> new ListCell<Livro>() {	
 			@Override
 			protected void updateItem(Livro item, boolean empty) {
 				super.updateItem(item, empty);

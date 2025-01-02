@@ -367,7 +367,7 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 	}
 	
 	public void associatedStatusEmprestimo() {		
-		List<String> list = Arrays.asList("Pendente", "Devolvido", "Nao_Devolvido");
+		List<String> list = Arrays.asList("Pendente", "Devolvido", "Não Devolvido");
 		obsListStatus = FXCollections.observableArrayList(list);
 		comboBoxStatus.setItems(obsListStatus);
 	}

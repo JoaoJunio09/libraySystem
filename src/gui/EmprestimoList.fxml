@@ -107,7 +107,7 @@
                                     <Image url="@../../img/new-document.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btNovoEmprestimo" mnemonicParsing="false" onAction="#onBtNovoEmprestimoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #000080;" text="Novo Emprestimo" textFill="WHITE">
+                              <Button fx:id="btNovoEmprestimo" mnemonicParsing="false" onAction="#onBtNovoEmprestimoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #1C1C1C;" text="Novo Emprestimo" textFill="WHITE">
                                  <font>
                                     <Font name="BebasNeue" size="16.0" />
                                  </font>
@@ -127,7 +127,7 @@
                                     <Image url="@../../img/seo-report.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btRelatorio" mnemonicParsing="false" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: blue;" text="Relatório" textFill="WHITE">
+                              <Button fx:id="btRelatorio" mnemonicParsing="false" onAction="#onBtRelatorioAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #0000CD;" text="Relatório" textFill="WHITE">
                                  <font>
                                     <Font name="BebasNeue" size="16.0" />
                                  </font>
@@ -151,7 +151,7 @@
                                     <Image url="@../../img/search.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btPesquisar" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #836FFF;" text="Pesquisar" textFill="WHITE">
+                              <Button fx:id="btPesquisar" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #CD853F;" text="Pesquisar" textFill="WHITE">
                                  <font>
                                     <Font name="BebasNeue" size="16.0" />
                                  </font>
@@ -171,7 +171,7 @@
                                     <Image url="@../../img/filter.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="btFiltragemCompleta" mnemonicParsing="false" onAction="#onBtFiltragemCompletaAction" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: purple;" text="Filtragem completa" textFill="WHITE">
+                              <Button fx:id="btFiltragemCompleta" mnemonicParsing="false" onAction="#onBtFiltragemCompletaAction" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #FFA500;" text="Filtragem completa" textFill="WHITE">
                                  <font>
                                     <Font name="BebasNeue" size="16.0" />
                                  </font>

@@ -102,6 +102,11 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	}
 	
 	@FXML
+	public void onBtRelatorioAction() {
+		System.out.println("onBtRelatorioAction");
+	}
+	
+	@FXML
 	public void onBtFiltragemCompletaAction(ActionEvent event) {
 		Stage parent = Utils.currentStage(event);
 		createFilter("/gui/EmprestimoFiltragemCompleta.fxml", parent);
