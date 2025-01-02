@@ -9,7 +9,7 @@ public class Emprestimo implements Serializable {
 	
 	private final String pendente = "Pendente";
 	private final String devolvido = "Devolvido";
-	private final String naoDevolvido = "Nao_Devolvido";
+	private final String naoDevolvido = "Não Devolvido";
 
 	private Integer id;
 	private Cliente cliente;
@@ -94,6 +94,10 @@ public class Emprestimo implements Serializable {
 	
 	public void setStatusNaoDevolvido() {
 		this.status = naoDevolvido;
+	}
+	
+	public void setStatusPendente() {
+		this.status = pendente;
 	}
 
 	public static long getSerialversionuid() {

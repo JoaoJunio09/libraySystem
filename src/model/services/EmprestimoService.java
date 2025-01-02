@@ -1,7 +1,8 @@
 package model.services;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import model.dao.DaoFactory;
 import model.dao.EmprestimoDao;
@@ -26,6 +27,24 @@ public class EmprestimoService {
 	
 	public void deleteById(Emprestimo obj) {
 		dao.deleteById(obj.getId());
+	}
+	
+	public void updateDataAll() {
+		List<Emprestimo> list = dao.findAll();
+		
+		for (Emprestimo emp : list) {
+			Date newDate = new Date();
+			Date date = emp.getDataDevolucao();
+			
+			if (date.before(newDate)) {
+				emp.setStatusNaoDevolvido();
+			}
+			else {
+				emp.setStatusPendente();
+			}
+			
+			saveOrUpdate(emp);
+		}
 	}
 	
 	public List<Emprestimo> filtrar(String dataEmprestimo, String dataDevolucao) {

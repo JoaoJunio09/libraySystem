@@ -166,6 +166,8 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 			throw new IllegalStateException("Service was null");
 		}
 		
+		service.updateDataAll();
+		
 		List<Emprestimo> list = service.findAll();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewEmprestimo.setItems(obsList);
