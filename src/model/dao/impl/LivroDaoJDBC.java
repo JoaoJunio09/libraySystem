@@ -12,7 +12,6 @@ import java.util.Map;
 
 import db.DB;
 import db.DbException;
-import model.dao.CRUD;
 import model.dao.LivroDao;
 import model.entities.Categoria;
 import model.entities.Livro;

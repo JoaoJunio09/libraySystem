@@ -39,7 +39,6 @@ public class LoginViewController implements Initializable {
 			Stage mainStage = new Stage();
 			mainStage.setScene(mainScene);
 			mainStage.setTitle("Minha Biblioteca");
-			mainStage.setMaximized(true);
 			mainStage.show();
 			Utils.currentStage(event).close();
 		}

@@ -15,6 +15,7 @@ import gui.util.Constraints;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
@@ -66,16 +67,10 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 	private TextField txtNomeCliente;
 	
 	@FXML
-	private TextField txtEmailCliente;
-	
-	@FXML
 	private TextField txtIdLivro;
 	
 	@FXML
 	private TextField txtNomeLivro;
-	
-	@FXML
-	private TextField txtAutorLivro;
 	
 	@FXML
 	private TextField txtIdEmprestimo;
@@ -96,34 +91,32 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 	private ComboBox<String> comboBoxStatus;
 	
 	@FXML
-	private Label labelCodigoSQL;
+	private Button btFiltrar;
 	
 	@FXML
-	private Button btLimparCampos;
+	private Button btCancelar;
+	
+	@FXML
+	private Button btLimparCampos;	
 	
 	private ObservableList<Emprestimo> obsList;
 	
 	private ObservableList<String> obsListStatus;
 	
+	@FXML
 	public void onBtLimparCamposAction() {
 		sql = "";
 		txtIdCliente.setText("");
 		txtNomeCliente.setText("");
-		txtEmailCliente.setText("");
 		txtIdLivro.setText("");
 		txtNomeLivro.setText("");
-		txtAutorLivro.setText("");
 		txtIdEmprestimo.setText("");
 		dpDataInicialEmprestimo.setValue(null);
 		dpDataFinalEmprestimo.setValue(null);
 		dpDataInicialDevolucao.setValue(null);
 		dpDataFinalDevolucao.setValue(null);
 		comboBoxStatus.setValue(null);
-		labelCodigoSQL.setText(sql);
 	}
-	
-	@FXML
-	private Button btFiltrar;
 	
 	private int count = 0;
 	private String sql = "";
@@ -137,8 +130,6 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 			createSqlFilter();	
 			updateTableView();
 			
-			System.out.println(sql);
-			
 			sql = "WHERE ";
 			count = 0;
 		}
@@ -148,16 +139,17 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 		}
 	}
 	
-	private void createSqlFilter() {
-		if (labelCodigoSQL.getText() == "") {
-			sql = "WHERE ";
-			labelCodigoSQL.setText(sql);
-		}
+	@FXML
+	public void onBtCancelarAction(ActionEvent event) {
+		Utils.currentStage(event).close();
+	}
+	
+	private void createSqlFilter() {	
+		sql = "WHERE ";
 		
 		if (!txtIdCliente.getText().equals("")) {
 			String sqlIdCliente = "cli.Id = " + txtIdCliente.getText() + " ";
 			sql += sqlIdCliente;
-			labelCodigoSQL.setText(sql);
 			count++;
 		}
 		
@@ -165,28 +157,11 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 			if (count > 0) {
 				String sqlNomeCliente = "OR cli.Nome LIKE '" + txtNomeCliente.getText() + "%' ";
 				sql += sqlNomeCliente;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
 				String sqlNomeCliente = "cli.Nome LIKE '" + txtNomeCliente.getText() + "%' ";
 				sql += sqlNomeCliente;
-				labelCodigoSQL.setText(sql);
-				count++;
-			}
-		}
-		
-		if (!txtEmailCliente.getText().equals("")) {
-			if (count > 0) {
-				String sqlEmailCliente = "OR cli.Email LIKE '" + txtEmailCliente.getText() + "%' ";
-				sql += sqlEmailCliente;
-				labelCodigoSQL.setText(sql);
-				count++;
-			}
-			else {
-				String sqlEmailCliente = "cli.Email LIKE '" + txtEmailCliente.getText() + "%' ";
-				sql += sqlEmailCliente;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
@@ -195,13 +170,11 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 			if (count > 0) {
 				String sqlIdLivro = "OR liv.Id = " + txtIdLivro.getText() + " ";
 				sql += sqlIdLivro;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
 				String sqlIdLivro = "liv.Id = " + txtIdLivro.getText() + " ";
 				sql += sqlIdLivro;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
@@ -210,28 +183,11 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 			if (count > 0) {
 				String sqlNomeLivro = "OR liv.Nome LIKE '" + txtNomeLivro.getText() + "%' ";
 				sql += sqlNomeLivro;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
 				String sqlNomeLivro = "liv.Nome LIKE '" + txtNomeLivro.getText() + "%' ";
 				sql += sqlNomeLivro;
-				labelCodigoSQL.setText(sql);
-				count++;
-			}
-		}
-		
-		if (!txtAutorLivro.getText().equals("")) {
-			if (count > 0) {
-				String sqlAutorLivro = "OR liv.Autor LIKE '" + txtAutorLivro.getText() + "%' ";
-				sql += sqlAutorLivro;
-				labelCodigoSQL.setText(sql);
-				count++;
-			}
-			else {
-				String sqlAutorLivro = "liv.Autor LIKE '" + txtAutorLivro.getText() + "%' ";
-				sql += sqlAutorLivro;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
@@ -240,13 +196,11 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 			if (count > 0) {
 				String sqlIdEmprestimo = "OR emp.Id = " + txtIdEmprestimo.getText() + " ";
 				sql += sqlIdEmprestimo;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
 				String sqlIdEmprestimo = "emp.Id = " + txtIdEmprestimo.getText() + " ";
 				sql += sqlIdEmprestimo;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
@@ -264,7 +218,6 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 				
 				String sqlDataEmprestimo = "OR emp.DataEmprestimo BETWEEN '" + dataInicialEmprestimo + "' and '" + dataFinalEmprestimo + "' ";
 				sql += sqlDataEmprestimo;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
@@ -279,7 +232,6 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 				
 				String sqlDataEmprestimo = "emp.DataEmprestimo BETWEEN '" + dataInicialEmprestimo + "' and '" + dataFinalEmprestimo + "' ";
 				sql += sqlDataEmprestimo;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
@@ -297,7 +249,6 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 				
 				String sqlDataDevolucao = "OR emp.DataDevolucao BETWEEN '" + dataInicialDevolucao + "' and '" + dataFinalDevolucao + "' ";
 				sql += sqlDataDevolucao;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
@@ -312,22 +263,19 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 				
 				String sqlDataDevolucao = "emp.DataDevolucao BETWEEN '" + dataInicialDevolucao + "' and '" + dataFinalDevolucao + "' ";
 				sql += sqlDataDevolucao;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
 		
 		if (comboBoxStatus.getValue() != null) {
 			if (count > 0) {
-				String sqlStatusEmprestimo = "OR emp.Status LIKE '" + comboBoxStatus.getValue() + "%' ";
+				String sqlStatusEmprestimo = "AND emp.Status LIKE '" + comboBoxStatus.getValue() + "%' ";
 				sql += sqlStatusEmprestimo;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 			else {
 				String sqlStatusEmprestimo = "emp.Status LIKE '" + comboBoxStatus.getValue() + "%' ";
 				sql += sqlStatusEmprestimo;
-				labelCodigoSQL.setText(sql);
 				count++;
 			}
 		}
@@ -353,6 +301,8 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 	
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtIdCliente);
+		Constraints.setTextFieldInteger(txtIdLivro);
+		Constraints.setTextFieldInteger(txtIdEmprestimo);
 		
 		tableColumnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		tableColumnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));

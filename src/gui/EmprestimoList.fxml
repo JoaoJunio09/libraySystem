@@ -11,49 +11,16 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EmprestimoListController">
+<VBox alignment="TOP_CENTER" prefHeight="604.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EmprestimoListController">
    <children>
-      <BorderPane prefHeight="800.0" prefWidth="1367.0">
-         <left>
-            <TableView fx:id="tableViewEmprestimo" prefHeight="543.0" prefWidth="1218.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="tableColumnId" prefWidth="108.0" text="Cód. Emprestimo" />
-                <TableColumn fx:id="tableColumnCliente" prefWidth="115.0" text="Cliente" />
-                  <TableColumn fx:id="tableColumnLivro" prefWidth="145.0" text="Livro" />
-                  <TableColumn fx:id="tableColumnDataEmprestimo" prefWidth="167.0" text="Data Emprestimo" />
-                  <TableColumn fx:id="tableColumnDataDevolucao" prefWidth="172.0" text="Data Devolução" />
-                  <TableColumn fx:id="tableColumnDescricao" prefWidth="352.0" text="Descrição" />
-                  <TableColumn fx:id="tableColumnStatus" prefWidth="155.0" text="Status" />
-              </columns>
-               <effect>
-                  <DropShadow />
-               </effect>
-            </TableView>
-         </left>
-         <bottom>
-            <AnchorPane prefHeight="127.0" prefWidth="1500.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ImageView fitHeight="79.0" fitWidth="133.0" layoutX="729.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../img/logo.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="677.0" layoutY="99.0" text="Minha Biblioteca - System">
-                     <font>
-                        <Font name="Cambria Bold Italic" size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
-         </bottom>
+      <BorderPane prefHeight="605.0" prefWidth="1100.0">
          <top>
-            <VBox prefHeight="44.0" prefWidth="1350.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="42.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
                   <ToolBar prefHeight="73.0" prefWidth="1350.0">
                      <items>
@@ -95,193 +62,107 @@
                </children>
             </VBox>
          </top>
-         <center>
-            <VBox prefHeight="629.0" prefWidth="370.0" BorderPane.alignment="CENTER">
+         <bottom>
+            <HBox alignment="BASELINE_CENTER" prefHeight="142.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="BASELINE_CENTER" prefHeight="166.0" prefWidth="282.0">
+                  <VBox alignment="CENTER" prefHeight="128.0" prefWidth="143.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="155.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="99.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/new-document.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btNovoEmprestimo" mnemonicParsing="false" onAction="#onBtNovoEmprestimoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #1C1C1C;" text="Novo Emprestimo" textFill="WHITE">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="164.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="106.0" fitWidth="107.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/seo-report.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btRelatorio" mnemonicParsing="false" onAction="#onBtRelatorioAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #0000CD;" text="Relatório" textFill="WHITE">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </VBox>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/new-document.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btNovoEmprestimo" mnemonicParsing="false" onAction="#onBtNovoEmprestimoAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: black;" text="Novo Emprestimo" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeue" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
-                  </HBox>
-                  <HBox alignment="BASELINE_CENTER" prefHeight="145.0" prefWidth="282.0">
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="155.0" prefWidth="171.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="100.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/search.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btPesquisar" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: #CD853F;" text="Pesquisar" textFill="WHITE">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="99.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/filter.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btFiltragemCompleta" mnemonicParsing="false" onAction="#onBtFiltragemCompletaAction" prefHeight="42.0" prefWidth="130.0" style="-fx-background-color: #FFA500;" text="Filtragem completa" textFill="WHITE">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Button>
-                           </children>
-                        </VBox>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/filter.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btFiltrarPesquisar" mnemonicParsing="false" onAction="#obBtFiltrarPesquisarAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: #8B008B;" text="Filtrar/Pesquisar" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeue" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="147.0" prefWidth="282.0">
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="100.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/stack-of-books.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btConcluido" mnemonicParsing="false" onAction="#onBtLivroAction" prefHeight="42.0" prefWidth="120.0" text="Livro">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="130.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="86.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/client.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtClienteAction" prefHeight="42.0" prefWidth="120.0" text="Cliente">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/checked.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btConcluido" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: green;" text="Concluído" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeue" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="138.0" prefWidth="282.0">
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="130.0" prefWidth="171.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="100.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/checked.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btConcluido2" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: green;" text="Concluído" textFill="WHITE">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="130.0" prefWidth="171.0">
-                           <children>
-                              <ImageView fitHeight="86.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../img/logout.png" />
-                                 </image>
-                              </ImageView>
-                              <Button fx:id="btCancelar1" mnemonicParsing="false" onAction="#onBtCancelarAction" prefHeight="42.0" prefWidth="120.0" style="-fx-background-color: red;" text="Sair" textFill="WHITE">
-                                 <font>
-                                    <Font name="BebasNeue" size="16.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Button>
-                           </children>
-                        </VBox>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/logout.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: red;" text="Sair" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeue" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
+         </bottom>
+         <center>
+            <TableView fx:id="tableViewEmprestimo" prefHeight="414.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tableColumnId" prefWidth="52.0" text="Cód." />
+                <TableColumn fx:id="tableColumnCliente" prefWidth="110.0" text="Cliente" />
+                  <TableColumn fx:id="tableColumnLivro" prefWidth="107.0" text="Livro" />
+                  <TableColumn fx:id="tableColumnDataEmprestimo" prefWidth="112.0" text="Data Emprestimo" />
+                  <TableColumn fx:id="tableColumnDataDevolucao" prefWidth="119.0" text="Data Devolução" />
+                  <TableColumn fx:id="tableColumnDescricao" prefWidth="221.0" text="Descrição" />
+                  <TableColumn fx:id="tableColumnStatus" prefWidth="142.0" text="Status" />
+              </columns>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TableView>
          </center>
       </BorderPane>
    </children>

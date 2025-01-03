@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GraficosEmprestimosPorMesController">
+   <children>
+      <BarChart fx:id="barChart" prefHeight="544.0" prefWidth="817.0" title="Empréstimos por Mês">
+         <xAxis>
+            <CategoryAxis fx:id="categoryAxis" side="BOTTOM" />
+         </xAxis>
+         <yAxis>
+            <NumberAxis fx:id="numberAxis" side="LEFT" />
+         </yAxis>
+      </BarChart>
+   </children>
+</VBox>

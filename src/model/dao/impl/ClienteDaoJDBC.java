@@ -12,7 +12,6 @@ import java.util.Map;
 
 import db.DB;
 import db.DbException;
-import model.dao.CRUD;
 import model.dao.ClienteDao;
 import model.entities.Cidade;
 import model.entities.Cliente;

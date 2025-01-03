@@ -74,10 +74,10 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	private Button btRelatorio;
 	
 	@FXML
-	private Button btPesquisar;
+	private Button btFiltrarPesquisar;
 	
 	@FXML
-	private Button btFiltragemCompleta;
+	private Button btCliente;
 	
 	@FXML
 	private Button btConcluido;
@@ -102,22 +102,15 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	}
 	
 	@FXML
-	public void onBtRelatorioAction() {
-		System.out.println("onBtRelatorioAction");
+	public void onBtRelatorioAction(ActionEvent event) {
+		Stage parent = Utils.currentStage(event);
+		createRelatorio("/gui/EmprestimoRelatorio.fxml", parent);
 	}
 	
 	@FXML
-	public void onBtFiltragemCompletaAction(ActionEvent event) {
+	public void obBtFiltrarPesquisarAction(ActionEvent event) {
 		Stage parent = Utils.currentStage(event);
 		createFilter("/gui/EmprestimoFiltragemCompleta.fxml", parent);
-	}
-	
-	@FXML
-	public void onBtLivroAction() {
-		loadView("Registro - Livro", "/gui/LivroList.fxml", (LivroListController controller) -> {
-			controller.setLivroService(new LivroService());
-			controller.updateTableView();
-		});
 	}
 	
 	@FXML
@@ -139,11 +132,7 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	
 	@FXML
 	public void onBtCancelarAction(ActionEvent event) {
-		Optional<ButtonType> result = Alerts.showConfirmation("Confirmar", "Deseja sair?");
-		
-		if (result.get() == ButtonType.OK) {
-			Utils.currentStage(event).close();
-		}
+		Utils.currentStage(event).close();
 	}
 	
 	@FXML
@@ -275,11 +264,34 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 			Stage empStage = new Stage();
 			empStage.setScene(empScene);
 			empStage.setTitle(title);
-			empStage.setMaximized(true);
+			empStage.setMaximized(false);
 			empStage.show();
 			
 			T controller = loader.getController();
 			initializing.accept(controller);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+			Alerts.showALert("IO Exception", "Erro ao carregar", e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	private synchronized <T> void createRelatorio(String absoluteName, Stage parent) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+			Pane empRelatorio = loader.load();
+			
+			EmprestimoRelatorioController controller = loader.getController();
+			controller.setEmprestimoService(new EmprestimoService());
+			controller.updateTableView();
+			
+			Stage stageDialog = new Stage();
+			stageDialog.setTitle("Relátorio - Empréstimo");
+			stageDialog.setScene(new Scene(empRelatorio));
+			stageDialog.setResizable(false);
+			stageDialog.initOwner(parent);
+			stageDialog.initModality(Modality.APPLICATION_MODAL);
+			stageDialog.showAndWait();
 		}
 		catch (IOException e) {
 			e.printStackTrace();

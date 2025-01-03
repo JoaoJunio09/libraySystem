@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import model.services.CategoriaService;
 import model.services.CidadeService;
 import model.services.ClienteService;
+import model.services.EmprestimoService;
 import model.services.EstadoService;
 import model.services.LivroService;
 
@@ -26,12 +27,6 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	private MenuItem menuItemServico;
-	
-	@FXML
-	private MenuItem menuItemEmprestimo;
-	
-	@FXML
-	private MenuItem menuItemDevolucao;
 	
 	@FXML
 	private MenuItem menuItemCliente;
@@ -50,6 +45,12 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	private MenuItem menuItemCadastrarUsuario;
+	
+	@FXML
+	private MenuItem menuItemRelatorioEmprestimo;
+	
+	@FXML
+	private MenuItem menuItemGraficos;
 	
 	@FXML
 	private MenuItem menuItemSobre;
@@ -71,19 +72,9 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	public void onMenuServicoAction() {
-		loadViewServico("/gui/ServicoView.fxml", (ServicoViewController controller) -> {
+		loadView("/gui/ServicoView.fxml", (ServicoViewController controller) -> {
 			//
 		});
-	}
-	
-	@FXML
-	public void onMenuItemEmprestimoAction() {
-		System.out.println("onMenuItemEmprestimoAction");
-	}
-	
-	@FXML
-	public void onMenuItemDevolucaoAction() {
-		System.out.println("onMenuItemDevolucaoAction");
 	}
 	
 	@FXML
@@ -125,35 +116,25 @@ public class MainViewController implements Initializable {
 			controller.updateTableView();
 		});
 	}
+	
+	@FXML
+	public void onMenuItemRelatorioEmprestimo() {
+		loadView("/gui/EmprestimoRelatorio.fxml", (EmprestimoRelatorioController controller) -> {
+			controller.setEmprestimoService(new EmprestimoService());
+			controller.updateTableView();
+		});
+	}
+	
+	@FXML
+	public void onMenuItemGraficos() {
+		loadView("/gui/GraficosEmprestimosPorMes.fxml", (GraficosEmprestimosPorMesController controller) -> {
+			controller.setEmprestimoService(new EmprestimoService());
+			controller.updateBarChat();
+		});
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-	}
-	
-	private synchronized <T> void loadViewServico(String absoluteName, Consumer<T> initializing) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			ScrollPane scrollPane = loader.load();
-			
-			scrollPane.setFitToHeight(true);
-			scrollPane.setFitToWidth(true);
-			
-			Scene mainScene = Main.getMainScene();
-			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-			
-			Node mainMenu = mainVBox.getChildren().get(0);			
-			
-			mainVBox.getChildren().clear();
-			mainVBox.getChildren().add(mainMenu);
-			mainVBox.getChildren().addAll(scrollPane);
-			
-			T controller = loader.getController();
-			initializing.accept(controller);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			Alerts.showALert("IO Exception", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
-		}
 	}
 	
 	protected synchronized <T> void loadView(String absoluteName, Consumer<T> initializing) {

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
    <content>
-      <VBox prefHeight="592.0" prefWidth="990.0">
+      <VBox prefHeight="598.0" prefWidth="1098.0">
          <children>
             <MenuBar>
               <menus>
-                  <Menu mnemonicParsing="false" text="Inicio">
+                  <Menu mnemonicParsing="false" text="Processos">
                     <items>
                       <MenuItem fx:id="menuItemServico" mnemonicParsing="false" onAction="#onMenuServicoAction" text="Serviço" />
                     </items>
                   </Menu>
-                <Menu mnemonicParsing="false" text="Opções">
+                <Menu mnemonicParsing="false" text="Gerenciar">
                   <items>
                     <MenuItem fx:id="menuItemCliente" mnemonicParsing="false" onAction="#onMenuItemClienteAction" text="Cliente" />
                         <MenuItem fx:id="menuItemLivro" mnemonicParsing="false" onAction="#onMenuItemLivroAction" text="Livro" />
@@ -27,6 +33,16 @@
                         <MenuItem fx:id="menuItemCategoria" mnemonicParsing="false" onAction="#onMenuItemCategoriaAction" text="Categoria" />
                   </items>
                 </Menu>
+                  <Menu mnemonicParsing="false" text="Graficos">
+                    <items>
+                        <MenuItem fx:id="menuItemGraficos" mnemonicParsing="false" onAction="#onMenuItemGraficos" text="Emprestimo" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Relatorios">
+                    <items>
+                      <MenuItem fx:id="menuItemRelatorioEmprestimo" mnemonicParsing="false" onAction="#onMenuItemRelatorioEmprestimo" text="Emprestimo" />
+                    </items>
+                  </Menu>
                   <Menu mnemonicParsing="false" text="Ajuda">
                     <items>
                       <MenuItem fx:id="menuItemContato" mnemonicParsing="false" text="Contato" />
@@ -46,6 +62,23 @@
                   <Insets bottom="20.0" />
                </opaqueInsets>
             </MenuBar>
+            <AnchorPane prefHeight="604.0" prefWidth="1098.0" style="-fx-background-image: url(&quot;..\..\img\logo.png&quot;);">
+               <children>
+                  <ImageView fitHeight="211.0" fitWidth="323.0" layoutX="388.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/logo.png" />
+                     </image>
+                     <effect>
+                        <GaussianBlur radius="4.82" />
+                     </effect>
+                  </ImageView>
+                  <Label layoutX="299.0" layoutY="139.0" text="Libray System - Minha Biblioteca">
+                     <font>
+                        <Font name="Avant Garde Book BT" size="35.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
       </VBox>
    </content>
