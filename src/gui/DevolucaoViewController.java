@@ -9,27 +9,28 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Cliente;
@@ -39,7 +40,7 @@ import model.services.ClienteService;
 import model.services.EmprestimoService;
 import model.services.LivroService;
 
-public class EmprestimoListController implements Initializable, DataChangeListener {
+public class DevolucaoViewController implements Initializable, DataChangeListener {
 	
 	private EmprestimoService service;
 	
@@ -68,10 +69,7 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	private TableColumn<Emprestimo, String> tableColumnStatus;
 	
 	@FXML
-	private Button btNovoEmprestimo;
-	
-	@FXML
-	private Button btFiltrarPesquisar;
+	private TableColumn<Emprestimo, Emprestimo> tableColumnRegistrarDevolucao;
 	
 	@FXML
 	private Button btConcluido;
@@ -86,20 +84,10 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	private DatePicker dpFiltrarDataFinal;
 	
 	@FXML
-	private Button btFiltrar;
+	private TextField txtNomeCliente;
 	
 	@FXML
-	public void onBtNovoEmprestimoAction(ActionEvent event) {
-		Stage parent = Utils.currentStage(event);
-		Emprestimo obj = new Emprestimo();
-		createDialogForm(obj, "/gui/EmprestimoForm.fxml", parent);
-	}
-	
-	@FXML
-	public void obBtFiltrarPesquisarAction(ActionEvent event) {
-		Stage parent = Utils.currentStage(event);
-		createFilter("/gui/EmprestimoFiltragemCompleta.fxml", parent);
-	}
+	private Button btPesquisar;
 	
 	@FXML
 	public void onBtConcluidoAction(ActionEvent event) {
@@ -116,32 +104,74 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 	}
 	
 	@FXML
-	public void onBtFiltrarAction() {
+	public void onBtPesquisarAction() {
 		if (service == null) {
 			throw new IllegalStateException("Service was null");
 		}
 		try {
+			String sql = "WHERE ";
+			int count = 0;
+			
 			Date dataEmprestimo = null;
 			Date dataDevolucao = null;
+			String nomeCliente = "";
 			
-			if (dpFiltrarDataInicial != null) {
-				Instant instant = Instant.from(dpFiltrarDataInicial.getValue().atStartOfDay(ZoneId.systemDefault()));
-				dataEmprestimo = Date.from(instant);
+			if (dpFiltrarDataInicial.getValue() != null && dpFiltrarDataFinal.getValue() != null) {
+				String sqlDatas = "";
+				
+				Instant instantInicial = Instant.from(dpFiltrarDataInicial.getValue().atStartOfDay(ZoneId.systemDefault()));
+				dataEmprestimo = Date.from(instantInicial);
+				
+				Instant instantFinal = Instant.from(dpFiltrarDataFinal.getValue().atStartOfDay(ZoneId.systemDefault()));
+				dataDevolucao = Date.from(instantFinal);
+				
+				String dataInicial = new SimpleDateFormat("yyyy-MM-dd").format(dataEmprestimo);
+				String dataFinal = new SimpleDateFormat("yyyy-MM-dd").format(dataDevolucao);
+				
+				if (count > 0) {										
+					sqlDatas = "OR emp.DataEmprestimo BETWEEN '" + dataInicial + "' and '" + dataFinal + "'";
+				}
+				else {
+					sqlDatas = "emp.DataEmprestimo BETWEEN '" + dataInicial + "' and '" + dataFinal + "'";
+				}
+				
+				sql+= sqlDatas;
+				count++;
 			}
 			
-			if (dpFiltrarDataFinal != null) {
-				Instant instant = Instant.from(dpFiltrarDataFinal.getValue().atStartOfDay(ZoneId.systemDefault()));
-				dataDevolucao = Date.from(instant);
+			if (txtNomeCliente.getText() != null) {
+				String sqlNomeCliente = "";
+				nomeCliente = txtNomeCliente.getText();
+				
+				if (count > 0) {
+					sqlNomeCliente = "OR cli.Nome LIKE '" + nomeCliente + "%'";
+				}
+				else {
+					sqlNomeCliente = "cli.Nome LIKE '" + nomeCliente + "%'";
+				}
+				
+				sql += sqlNomeCliente;
+				count++;
 			}
 			
-			String dataInicial = new SimpleDateFormat("yyyy-MM-dd").format(dataEmprestimo);
-			String dataFinal = new SimpleDateFormat("yyyy-MM-dd").format(dataDevolucao);
+			if (count > 0) {
+				String sqlWherePendente = "AND emp.Status = 'Pendente'";
+				sql += sqlWherePendente;
+				count++;
+			}
+			else {
+				String sqlWherePendente = "emp.Status = 'Pendente'";
+				sql += sqlWherePendente;
+				count++;
+			}
 			
-			List<Emprestimo> list = service.filtrar(dataInicial, dataFinal);
+			System.out.println(sql);
+			List<Emprestimo> list = service.filtragemCompleta(sql);
 			obsList = FXCollections.observableArrayList(list);
 			tableViewEmprestimo.setItems(obsList);
 		}
 		catch (NullPointerException e) {
+			e.printStackTrace();
 			Alerts.showALert("Preencha a data", null, e.getMessage(), AlertType.ERROR);
 		}
 	}
@@ -159,9 +189,11 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 		
 		service.updateDataAll();
 		
-		List<Emprestimo> list = service.findAll();
+		List<Emprestimo> list = service.findAllStatusPendente();
 		obsList = FXCollections.observableArrayList(list);
 		tableViewEmprestimo.setItems(obsList);
+		
+		initDevolverButtons();
 	}
 
 	@Override
@@ -190,7 +222,7 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
 			Pane empForm = loader.load();
 			
-			EmprestimoFormController controller = loader.getController();
+			DevolucaoConfirmacaoController controller = loader.getController();
 			controller.setEmprestimo(obj);
 			controller.setServices(new EmprestimoService(), new ClienteService(), new LivroService());
 			controller.subscribeDataChangeListener(this);
@@ -211,28 +243,24 @@ public class EmprestimoListController implements Initializable, DataChangeListen
 			Alerts.showALert("IO Exception", "Erro ao carregar", e.getMessage(), AlertType.ERROR);
 		}
 	}
-	
-	private synchronized <T> void createFilter(String absoluteName, Stage parent) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			Pane empFiltragemView = loader.load();
-			
-			EmprestimoFiltragemCompletaController controller = loader.getController();
-			controller.setServices(new EmprestimoService());
-			controller.associatedStatusEmprestimo();
-			
-			Stage stageDialog = new Stage();
-			stageDialog.setTitle("Filtragem completa - Empréstimo");
-			stageDialog.setScene(new Scene(empFiltragemView));
-			stageDialog.setResizable(false);
-			stageDialog.initOwner(parent);
-			stageDialog.initModality(Modality.APPLICATION_MODAL);
-			stageDialog.showAndWait();
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			Alerts.showALert("IO Exception", "Erro ao carregar", e.getMessage(), AlertType.ERROR);
-		}
+
+	private void initDevolverButtons() {
+		tableColumnRegistrarDevolucao.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+		tableColumnRegistrarDevolucao.setCellFactory(param -> new TableCell<Emprestimo, Emprestimo>() {
+			private final Button button = new Button("Devolver");
+
+			@Override
+			protected void updateItem(Emprestimo obj, boolean empty) {
+				super.updateItem(obj, empty);
+				if (obj == null) {
+					setGraphic(null);
+					return;
+				}
+				setGraphic(button);
+				button.setOnAction(
+						event -> createDialogForm(obj, "/gui/DevolucaoConfirmacao.fxml", Utils.currentStage(event)));
+			}
+		});
 	}
 
 	@Override

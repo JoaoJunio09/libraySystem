@@ -40,9 +40,6 @@ public class EmprestimoService {
 			if (date.before(newDate)) {
 				emp.setStatusNaoDevolvido();
 			}
-			else {
-				emp.setStatusPendente();
-			}
 			
 			saveOrUpdate(emp);
 		}
@@ -58,5 +55,9 @@ public class EmprestimoService {
 	
 	public Map<Integer, ArrayList<Integer>> listarQuantidadeVendasPorMes() {
 		return dao.listarQuantidadeVendasPorMes();
+	}
+	
+	public List<Emprestimo> findAllStatusPendente() {
+		return dao.findAllStatusPendente();
 	}
 }

@@ -45,12 +45,15 @@ public class ServicoViewController implements Initializable {
 	
 	@FXML
 	public void onBtNovaDevolucaoAction() {
-		System.out.println("onBtNovaDevolucaoAction");
+		loadViewServico("Registro - Devoluções", "/gui/DevolucaoView.fxml", (DevolucaoViewController controller) -> {
+			controller.setEmprestimoService(new EmprestimoService());
+			controller.updateTableView();
+		});
 	}
 	
 	@FXML
 	public void onBtNovoClienteAction() {
-		loadView("/gui/ClienteList.fxml", (ClienteListController controller) -> {
+		loadViewServico("Controler - Clientes", "/gui/ClienteList.fxml", (ClienteListController controller) -> {
 			controller.setClienteService(new ClienteService());
 			controller.updateTableView();
 		});
@@ -78,29 +81,6 @@ public class ServicoViewController implements Initializable {
 			empStage.setScene(empScene);
 			empStage.setTitle(title);
 			empStage.show();
-			
-			T controller = loader.getController();
-			initializing.accept(controller);
-		}
-		catch (IOException e) {
-			e.printStackTrace();
-			Alerts.showALert("IO Exception", "Erro ao carregar", e.getMessage(), AlertType.ERROR);
-		}
-	}
-	
-	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializing) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
-			VBox newVBox = loader.load();
-			
-			Scene mainScene = Main.getMainScene();
-			VBox mainVBox = (VBox) ((ScrollPane) mainScene.getRoot()).getContent();
-			
-			Node mainMenu = mainVBox.getChildren().get(0);
-			
-			mainVBox.getChildren().clear();
-			mainVBox.getChildren().add(mainMenu);
-			mainVBox.getChildren().addAll(newVBox);
 			
 			T controller = loader.getController();
 			initializing.accept(controller);

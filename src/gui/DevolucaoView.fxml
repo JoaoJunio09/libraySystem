@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="604.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DevolucaoViewController">
+   <children>
+      <BorderPane prefHeight="605.0" prefWidth="1100.0">
+         <top>
+            <VBox prefHeight="42.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ToolBar prefHeight="73.0" prefWidth="1350.0">
+                     <items>
+                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="160.0" spacing="10.0">
+                           <children>
+                              <Label text="De:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="dpFiltrarDataInicial" prefHeight="25.0" prefWidth="117.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </DatePicker>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="0.0" prefWidth="160.0" spacing="10.0">
+                           <children>
+                              <Label text="Até:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="dpFiltrarDataFinal" prefHeight="25.0" prefWidth="117.0">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </DatePicker>
+                           </children>
+                        </HBox>
+                        <Label text="Cliente:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <TextField fx:id="txtNomeCliente" prefHeight="26.0" prefWidth="210.0">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </TextField>
+                        <Button fx:id="btPesquisar" mnemonicParsing="false" onAction="#onBtPesquisarAction" text="Pesquisar">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                     </items>
+                  </ToolBar>
+               </children>
+            </VBox>
+         </top>
+         <bottom>
+            <HBox alignment="BASELINE_CENTER" prefHeight="142.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="154.0" prefWidth="171.0">
+                     <children>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/checked.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btConcluido" mnemonicParsing="false" onAction="#onBtConcluidoAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: green;" text="Concluído" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeue" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="130.0" prefWidth="171.0">
+                     <children>
+                        <ImageView fitHeight="75.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../img/logout.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btCancelar" mnemonicParsing="false" onAction="#onBtCancelarAction" prefHeight="38.0" prefWidth="120.0" style="-fx-background-color: red;" text="Sair" textFill="WHITE">
+                           <font>
+                              <Font name="BebasNeue" size="16.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <TableView fx:id="tableViewEmprestimo" prefHeight="414.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="tableColumnId" prefWidth="52.0" text="Cód." />
+                <TableColumn fx:id="tableColumnCliente" prefWidth="117.60000991821289" text="Cliente" />
+                  <TableColumn fx:id="tableColumnLivro" prefWidth="124.79994201660156" text="Livro" />
+                  <TableColumn fx:id="tableColumnDataEmprestimo" prefWidth="128.79998779296875" text="Data Emprestimo" />
+                  <TableColumn fx:id="tableColumnDataDevolucao" prefWidth="144.0" text="Data Devolução" />
+                  <TableColumn fx:id="tableColumnDescricao" prefWidth="261.5999755859375" text="Descrição" />
+                  <TableColumn fx:id="tableColumnStatus" prefWidth="147.199951171875" text="Status" />
+                  <TableColumn fx:id="tableColumnRegistrarDevolucao" prefWidth="111.99993896484375" />
+              </columns>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </TableView>
+         </center>
+      </BorderPane>
+   </children>
+</VBox>
