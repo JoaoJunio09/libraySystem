@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+import javax.accessibility.AccessibleHyperlink;
+
 import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
@@ -118,7 +120,7 @@ public class MainViewController implements Initializable {
 	}
 	
 	@FXML
-	public void onMenuItemRelatorioEmprestimo() {
+	public void onMenuItemRelatorioEmprestimoAction() {
 		loadView("/gui/EmprestimoRelatorio.fxml", (EmprestimoRelatorioController controller) -> {
 			controller.setEmprestimoService(new EmprestimoService());
 			controller.updateTableView();
@@ -132,6 +134,11 @@ public class MainViewController implements Initializable {
 			controller.updateBarChatPorMes();
 			controller.updateBarChatDevolvidosPorMes();
 		});
+	}
+	
+	@FXML
+	public void onMenuItemContatoAction() {
+		loadView("/gui/ContatoView.fxml", x -> {});
 	}
 
 	@Override
