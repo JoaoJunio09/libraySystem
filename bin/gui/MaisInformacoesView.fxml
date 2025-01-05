@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="1100.0">
+         <children>
+            <ImageView fitHeight="631.0" fitWidth="602.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/banner.jpeg" />
+               </image>
+            </ImageView>
+            <VBox layoutX="477.0" layoutY="17.0" prefHeight="561.0" prefWidth="602.0" style="-fx-background-color: #4F4F4F;">
+               <children>
+                  <Label text="Mais Informações" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima Bold" size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="O Software foi desenvolvido seguindo um padrão no tamanho das telas:" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="1100x600 e, devido essa resolução utilizada o tamanho será alterado confor-" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="me a preferência do cliente." textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="O projeto foi desenvolvido em aproximadamente 2 semanas, sendo utilizado" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="como tecnologia a linguagem de programação Java e, a biblioteca do JavaFX" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="para os efeitos e visuais da aplicação, como também todo o design." textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="Seguindo as informações passadas acima, para que o programa funcione " textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="100% e sem nenhum problema, o Java JDK deve estar instalado na máquina" textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="do cliente." textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label prefWidth="582.0" text="Em caso de problemas de funcionamento, entre em CONTATO." textFill="WHITE">
+                     <font>
+                        <Font name="Ebrima" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

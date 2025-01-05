@@ -35,7 +35,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Graficos">
                     <items>
-                        <MenuItem fx:id="menuItemGraficos" mnemonicParsing="false" onAction="#onMenuItemGraficos" text="Emprestimo" />
+                        <MenuItem fx:id="menuItemGraficos" mnemonicParsing="false" onAction="#onMenuItemGraficosAction" text="Emprestimo" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Relatorios">
@@ -46,8 +46,8 @@
                   <Menu mnemonicParsing="false" text="Ajuda">
                     <items>
                       <MenuItem fx:id="menuItemContato" mnemonicParsing="false" onAction="#onMenuItemContatoAction" text="Contato" />
-                        <MenuItem fx:id="menuItemMaisInformacoes" mnemonicParsing="false" text="Mais informações" />
-                        <MenuItem fx:id="menuItemSite" mnemonicParsing="false" text="Site " />
+                        <MenuItem fx:id="menuItemMaisInformacoes" mnemonicParsing="false" onAction="#onMenuItemMaisInformacoesAction" text="Mais informações" />
+                        <MenuItem fx:id="menuItemSite" mnemonicParsing="false" onAction="#onMenuItemSiteAction" text="Site " />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Configurações">

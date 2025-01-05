@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="CENTER" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Site - Minha Biblioteca">
+         <font>
+            <Font name="Ebrima Bold" size="32.0" />
+         </font>
+         <VBox.margin>
+            <Insets bottom="100.0" />
+         </VBox.margin>
+      </Label>
+      <HBox alignment="CENTER" prefHeight="174.0" prefWidth="1100.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../img/app-development.png" />
+               </image>
+            </ImageView>
+            <VBox alignment="CENTER_LEFT" prefHeight="174.0" prefWidth="417.0" spacing="5.0">
+               <children>
+                  <Label text="Nas proximas estarei desenvolvedendo uma landing page">
+                     <font>
+                        <Font name="BebasNeue" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="para exposição e vitrine para o software.">
+                     <font>
+                        <Font name="BebasNeue" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="O intuito é para que o projeto fique 100% completo, desde o ">
+                     <font>
+                        <Font name="BebasNeue" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="desenvolvimento, entrega e exposição do software.">
+                     <font>
+                        <Font name="BebasNeue" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets left="30.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="35.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+</VBox>

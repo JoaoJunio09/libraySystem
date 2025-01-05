@@ -74,9 +74,7 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	public void onMenuServicoAction() {
-		loadView("/gui/ServicoView.fxml", (ServicoViewController controller) -> {
-			//
-		});
+		loadView("/gui/ServicoView.fxml", x -> {});
 	}
 	
 	@FXML
@@ -128,7 +126,7 @@ public class MainViewController implements Initializable {
 	}
 	
 	@FXML
-	public void onMenuItemGraficos() {
+	public void onMenuItemGraficosAction() {
 		loadView("/gui/GraficosEmprestimosPorMes.fxml", (GraficosEmprestimosPorMesController controller) -> {
 			controller.setEmprestimoService(new EmprestimoService());
 			controller.updateBarChatPorMes();
@@ -139,6 +137,16 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onMenuItemContatoAction() {
 		loadView("/gui/ContatoView.fxml", x -> {});
+	}
+	
+	@FXML
+	public void onMenuItemMaisInformacoesAction() {
+		loadView("/gui/MaisInformacoesView.fxml", x -> {});
+	}
+	
+	@FXML
+	public void onMenuItemSiteAction() {
+		loadView("/gui/SiteView.fxml", x -> {});
 	}
 
 	@Override
