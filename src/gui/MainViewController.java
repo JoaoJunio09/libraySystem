@@ -158,6 +158,11 @@ public class MainViewController implements Initializable {
 	public void onMenuItemEspecificacaoDoProjetoAction() {
 		loadView("/gui/EspecificacaoDoProjeto.fxml", x -> {});
 	}
+	
+	@FXML
+	public void onMenuItemSobreAction() {
+		loadView("/gui/SobreView.fxml", x -> {});
+	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {

@@ -130,6 +130,8 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 			createSqlFilter();	
 			updateTableView();
 			
+			System.out.println(sql);
+			
 			sql = "WHERE ";
 			count = 0;
 		}
@@ -144,7 +146,7 @@ public class EmprestimoFiltragemCompletaController implements Initializable {
 		Utils.currentStage(event).close();
 	}
 	
-	private void createSqlFilter() {	
+	private void createSqlFilter() {
 		sql = "WHERE ";
 		
 		if (!txtIdCliente.getText().equals("")) {

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Especificação do Projeto">
@@ -158,10 +157,36 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="501.0" prefWidth="404.0">
                <children>
+                  <Label text="A aplicação segue:">
+                     <font>
+                        <Font name="Ebrima Bold" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="- Padrão de projetos MVC" textFill="#ff0101">
+                     <font>
+                        <Font name="Cambria Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="- Padrão de projetos DAO" textFill="#ff0101">
+                     <font>
+                        <Font name="Cambria Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="- Boas práticas de programação" textFill="#ff0101">
+                     <font>
+                        <Font name="Cambria Italic" size="15.0" />
+                     </font>
+                  </Label>
                   <ImageView fitHeight="252.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../img/information.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
                   </ImageView>
                </children>
             </VBox>
