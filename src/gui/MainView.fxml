@@ -52,8 +52,8 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Configurações">
                     <items>
-                        <MenuItem fx:id="menuItemVersao" mnemonicParsing="false" text="Versão" />
-                        <MenuItem fx:id="menuItemEspecificacaoDoProjeto" mnemonicParsing="false" text="Especificação do projeto" />
+                        <MenuItem fx:id="menuItemVersao" mnemonicParsing="false" onAction="#onMenuItemVersao" text="Versão" />
+                        <MenuItem fx:id="menuItemEspecificacaoDoProjeto" mnemonicParsing="false" onAction="#onMenuItemEspecificacaoDoProjetoAction" text="Especificação do projeto" />
                     </items>
                   </Menu>
                   <Menu mnemonicParsing="false" text="Sobre">

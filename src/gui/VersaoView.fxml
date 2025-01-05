@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Versão do projeto">
+         <VBox.margin>
+            <Insets left="20.0" top="10.0" />
+         </VBox.margin>
+         <font>
+            <Font name="Ebrima" size="20.0" />
+         </font>
+      </Label>
+      <Label text="Atual" textFill="RED">
+         <font>
+            <Font name="Ebrima Bold" size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="50.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="Versão 1.0 (BETA)">
+         <font>
+            <Font name="Ebrima" size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="5.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="Anterioes" textFill="RED">
+         <font>
+            <Font name="Ebrima Bold" size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="200.0" />
+         </VBox.margin>
+      </Label>
+      <Label text="Versão 1.0 (BETA)">
+         <font>
+            <Font name="Ebrima" size="15.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="5.0" />
+         </VBox.margin>
+      </Label>
+   </children>
+</VBox>

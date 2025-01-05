@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Especificação do Projeto">
+         <font>
+            <Font name="Ebrima" size="20.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="481.0" prefWidth="694.0">
+               <children>
+                  <Label text="Versão 1.0 (BETA):" textFill="RED">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Esta primeira versão 1.0 do projeto, apresenta diversas funcionalidades, como:">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="1. Cadastro e gerenciamento de Clientes.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="2. Cadastro e gerenciamento de Livros.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="3. Controle de Empréstimos de Livros.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="4. Controle de Devoluções de Empréstimos.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="5. Gráficos para análise de Empréstimos.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="6. Relatório de empréstimos (TXT).">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Obs: houveram diversas tentivas para implementação do serviço de relatório">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="utilizando o Jaspersoft Studio, mas infelizmente todas foram falhas.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="O Jaspersoft não fez parte da minha linha de estudos em Java, foi apenas">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="uma idéia de nova funcionalidade do programa que me fez tentar a implemen-">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="tação com quase êxito.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Mas continuarei estudando e buscando novas formas para implementar o serviço">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label text="de relatórios utilizando o Jaspersoft Studio em uma próxima versão do projeto.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label text="7. Próxima versão (1.1) terá utilização do JPA e Hibernate.">
+                     <font>
+                        <Font name="Ebrima" size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="501.0" prefWidth="404.0">
+               <children>
+                  <ImageView fitHeight="252.0" fitWidth="248.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../img/information.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>
