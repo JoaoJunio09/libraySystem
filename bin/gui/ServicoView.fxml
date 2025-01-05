@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ServicoViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ServicoViewController">
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="1032.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1100.0" spacing="100.0" style="-fx-background-color: darkblue;">
+            <HBox alignment="CENTER" prefHeight="70.0" prefWidth="1100.0" spacing="100.0" style="-fx-background-color: #4F4F4F;">
                <children>
                   <ImageView fitHeight="68.0" fitWidth="113.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,9 +33,9 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <HBox alignment="CENTER" layoutX="50.0" layoutY="105.0" prefHeight="201.0" prefWidth="566.0" spacing="70.0">
+            <HBox alignment="CENTER" layoutX="50.0" layoutY="94.0" prefHeight="201.0" prefWidth="566.0" spacing="70.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" style="-fx-border-color: black;">
+                  <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" style="-fx-background-color: #363636;">
                      <children>
                         <ImageView fitHeight="135.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -55,7 +55,7 @@
                         <DropShadow />
                      </effect>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="190.0" prefWidth="210.0" style="-fx-border-color: black;">
+                  <VBox alignment="CENTER" prefHeight="190.0" prefWidth="210.0" style="-fx-background-color: #363636;">
                      <children>
                         <ImageView fitHeight="129.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -77,16 +77,16 @@
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="83.0" layoutY="343.0" prefHeight="201.0" prefWidth="500.0" spacing="70.0">
+            <HBox alignment="CENTER" layoutX="83.0" layoutY="319.0" prefHeight="201.0" prefWidth="500.0" spacing="70.0">
                <children>
-                  <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" style="-fx-border-color: black;">
+                  <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" style="-fx-background-color: #808080;">
                      <children>
                         <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/client.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btNovoCliente1" mnemonicParsing="false" onAction="#onBtNovoClienteAction" style="-fx-background-color: green;" text="Cliente" textFill="WHITE">
+                        <Button fx:id="btNovoCliente1" mnemonicParsing="false" onAction="#onBtNovoClienteAction" prefHeight="40.0" prefWidth="99.0" text="Cliente">
                            <font>
                               <Font name="BebasNeue" size="20.0" />
                            </font>
@@ -98,18 +98,15 @@
                            </VBox.margin>
                         </Button>
                      </children>
-                     <effect>
-                        <DropShadow />
-                     </effect>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" style="-fx-border-color: black;">
+                  <VBox alignment="CENTER" prefHeight="170.0" prefWidth="210.0" style="-fx-background-color: #808080;">
                      <children>
                         <ImageView fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../img/stack-of-books.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btNovoLivro1" mnemonicParsing="false" onAction="#onBtNovoLivroAction" style="-fx-background-color: purple;" text="livro" textFill="WHITE">
+                        <Button fx:id="btNovoLivro1" mnemonicParsing="false" onAction="#onBtNovoLivroAction" prefHeight="40.0" prefWidth="99.0" text="livro">
                            <font>
                               <Font name="BebasNeue" size="20.0" />
                            </font>
@@ -121,13 +118,10 @@
                            </VBox.margin>
                         </Button>
                      </children>
-                     <effect>
-                        <DropShadow />
-                     </effect>
                   </VBox>
                </children>
             </HBox>
-            <VBox alignment="CENTER" layoutX="616.0" layoutY="474.0" prefHeight="70.0" prefWidth="463.0">
+            <VBox alignment="CENTER" layoutX="616.0" layoutY="459.0" prefHeight="70.0" prefWidth="463.0">
                <children>
                   <Label alignment="CENTER" text="Software developer/ João Junio">
                      <font>
@@ -137,7 +131,7 @@
                   <Label text="Sebastianópolis do sul, SP" />
                </children>
             </VBox>
-            <ImageView fitHeight="367.0" fitWidth="325.0" layoutX="696.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="367.0" fitWidth="325.0" layoutX="694.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../img/VISON%20COLOR%20(26).png" />
                </image></ImageView>

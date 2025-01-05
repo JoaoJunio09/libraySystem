@@ -129,7 +129,8 @@ public class MainViewController implements Initializable {
 	public void onMenuItemGraficos() {
 		loadView("/gui/GraficosEmprestimosPorMes.fxml", (GraficosEmprestimosPorMesController controller) -> {
 			controller.setEmprestimoService(new EmprestimoService());
-			controller.updateBarChat();
+			controller.updateBarChatPorMes();
+			controller.updateBarChatDevolvidosPorMes();
 		});
 	}
 

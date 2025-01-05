@@ -324,7 +324,7 @@ public class EmprestimoDaoJDBC implements EmprestimoDao {
 	}
 	
 	@Override
-	public Map<Integer, ArrayList<Integer>> listarQuantidadeVendasPorMes() {
+	public Map<Integer, ArrayList<Integer>> listarQuantidadeEmprestimosPorMes() {
 	    PreparedStatement stmt = null;
 	    ResultSet rs = null;
 	    String sql = "SELECT \n"
@@ -339,6 +339,57 @@ public class EmprestimoDaoJDBC implements EmprestimoDao {
 		            + "ORDER BY \n"
 		            + "ano,\n"
 		            + "mes;";
+
+	    Map<Integer, ArrayList<Integer>> retorno = new HashMap<>();
+
+	    try {
+	        stmt = conn.prepareStatement(sql);
+	        rs = stmt.executeQuery();
+
+	        while (rs.next()) {
+	            int ano = rs.getInt("ano");
+	            int mes = rs.getInt("mes");
+	            int totalEmprestimos = rs.getInt("total_emprestimos");
+
+	            // Verifica se o ano já existe no mapa
+	            if (!retorno.containsKey(ano)) {
+	                // Cria uma nova lista para o ano e adiciona o mês e a quantidade
+	                ArrayList<Integer> linha = new ArrayList<>();
+	                linha.add(mes);
+	                linha.add(totalEmprestimos);
+	                retorno.put(ano, linha);
+	            } else {
+	                // Se o ano já existe, adiciona mês e quantidade ao ArrayList existente
+	                ArrayList<Integer> linhaExistente = retorno.get(ano);
+	                linhaExistente.add(mes);
+	                linhaExistente.add(totalEmprestimos);
+	            }
+	        }
+	        return retorno;
+	    } 
+	    catch (SQLException e) {
+	        e.printStackTrace();
+	        throw new DbException(e.getMessage());
+	    }
+	}
+	
+	@Override
+	public Map<Integer, ArrayList<Integer>> listarQuantidadeEmprestimosDevolvidosPorMes() {
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+	    String sql = "SELECT\n"
+	    			+ "COUNT(Id) AS total_emprestimos, \n"
+	    			+ "YEAR(DataEmprestimo) AS ano,\n"
+	    			+ "MONTH(DataEmprestimo) AS mes\n"
+	    			+ "FROM \n"
+	    			+ "tb_emprestimo\n"
+	    			+ "WHERE Status = 'Devolvido'\n"
+	    			+ "GROUP BY \n"
+	    			+ "YEAR(DataEmprestimo),\n"
+	    			+ "MONTH(DataEmprestimo)\n"
+	    			+ "ORDER BY \n"
+	    			+ "ano,\n"
+	    			+ "mes;";
 
 	    Map<Integer, ArrayList<Integer>> retorno = new HashMap<>();
 

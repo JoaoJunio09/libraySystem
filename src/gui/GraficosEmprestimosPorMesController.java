@@ -15,6 +15,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Pagination;
 import model.services.EmprestimoService;
 
 public class GraficosEmprestimosPorMesController implements Initializable {
@@ -22,15 +23,26 @@ public class GraficosEmprestimosPorMesController implements Initializable {
 	private EmprestimoService service;
 	
 	@FXML
-	private BarChart<String, Integer> barChart;
+	private BarChart<String, Integer> barChartPorMes;
 	
 	@FXML
-	private CategoryAxis categoryAxis;
+	private BarChart<String, Integer> barChartDevolvidosPorMes;
 	
 	@FXML
-	private NumberAxis numberAxis;
+	private CategoryAxis categoryAxisPorMes;
+	
+	@FXML
+	private CategoryAxis categoryAxisDevolvidosPorMes;
+	
+	@FXML
+	private NumberAxis numberAxisPorMes;
+	
+	@FXML
+	private NumberAxis numberAxisDevolvidoPorMes;
 	
 	private ObservableList<String> observableListMeses = FXCollections.observableArrayList();
+	
+	private ObservableList<String> observableListMesesDevolvidos = FXCollections.observableArrayList();
 	
 	public void setEmprestimoService(EmprestimoService service) {
 		this.service = service;
@@ -40,16 +52,16 @@ public class GraficosEmprestimosPorMesController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 	}
 	
-	public void updateBarChat() {
+	public void updateBarChatPorMes() {
 		// Obtém an array com nomes dos meses em Inglês.
         String[] arrayMeses = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
         // Converte o array em uma lista e adiciona em nossa ObservableList de meses.
         observableListMeses.addAll(Arrays.asList(arrayMeses));
 
         // Associa os nomes de mês como categorias para o eixo horizontal.
-        categoryAxis.setCategories(observableListMeses);
+        categoryAxisPorMes.setCategories(observableListMeses);
         
-        Map<Integer, ArrayList<Integer>> dados = service.listarQuantidadeVendasPorMes();
+        Map<Integer, ArrayList<Integer>> dados = service.listarQuantidadeEmprestimosPorMes();
 
         for (Entry<Integer, ArrayList<Integer>> dadosItem : dados.entrySet()) {
             XYChart.Series<String, Integer> series = new XYChart.Series<>();
@@ -64,7 +76,35 @@ public class GraficosEmprestimosPorMesController implements Initializable {
 
                 series.getData().add(new XYChart.Data<>(mes, quantidade));
             }
-            barChart.getData().add(series);
+            barChartPorMes.getData().add(series);
+        }
+    }
+	
+	public void updateBarChatDevolvidosPorMes() {
+		// Obtém an array com nomes dos meses em Inglês.
+        String[] arrayMeses = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
+        // Converte o array em uma lista e adiciona em nossa ObservableList de meses.
+        observableListMesesDevolvidos.addAll(Arrays.asList(arrayMeses));
+
+        // Associa os nomes de mês como categorias para o eixo horizontal.
+        categoryAxisDevolvidosPorMes.setCategories(observableListMesesDevolvidos);
+        
+        Map<Integer, ArrayList<Integer>> dados = service.listarQuantidadeEmprestimosDevolvidosPorMes();
+
+        for (Entry<Integer, ArrayList<Integer>> dadosItem : dados.entrySet()) {
+            XYChart.Series<String, Integer> series = new XYChart.Series<>();
+            series.setName(dadosItem.getKey().toString());
+
+            for (int i = 0; i < dadosItem.getValue().size(); i = i + 2) {
+                String mes;
+                Integer quantidade;
+
+                mes = retornaNomeMes((int) dadosItem.getValue().get(i));
+                quantidade = (Integer) dadosItem.getValue().get(i + 1);
+
+                series.getData().add(new XYChart.Data<>(mes, quantidade));
+            }
+            barChartDevolvidosPorMes.getData().add(series);
         }
     }
 

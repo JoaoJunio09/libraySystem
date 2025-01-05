@@ -1,16 +1,25 @@
 package gui;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOError;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -73,17 +82,40 @@ public class EmprestimoRelatorioController implements Initializable {
 
 	@FXML
 	public void btImprimirAction() {
-		System.out.println("btImprimirAction");
+		creatingReport();
 	}
 	
-	@FXML
-	public void btCancelarAction(ActionEvent event) {
-		Utils.currentStage(event).close();
-	}
-	
-	@FXML
-	public void onBtListarTodos() {
-		System.out.println("onBtListarTodos");
+	private void creatingReport() {
+		boolean sucess = new File("C:\\Users\\joaoj\\OneDrive\\Desktop" + "\\relatorio_emprestimo").mkdir();
+		System.out.println("Criado com sucesso: " + sucess);
+		
+		String path = "C:\\Users\\joaoj\\OneDrive\\Desktop\\relatorio_emprestimo\\relatorio.txt";
+		
+		List<Emprestimo> list = service.findAll();
+		
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
+			bw.write("RELATÓRIO EMPRÉSTIMOS - TXT \n\n");
+			
+			int count = 0;
+			
+			for (Emprestimo emp : list) {
+				String line = "Cód Empréstimo="+emp.getId()+", Cliente="+emp.getCliente().getNome()+", Livro="+emp.getLivro().getNome()
+						+",STATUS="+emp.getStatus();
+				bw.write(line);
+				bw.newLine();
+				
+				if (emp.getStatus().equals("Devolvido")) {
+					count++;
+				}
+			}
+			
+			bw.write("\nQuantidade de Empréstimos DEVOLVIDOS = " + count);
+			
+			Alerts.showALert("Relatório gerado com sucesso!", null, "Confira em: " + path, AlertType.INFORMATION);
+		}
+		catch (IOException e) {
+			Alerts.showALert("Erro ao salvar", null, e.getMessage(), AlertType.ERROR);
+		}
 	}
 	
 	public void setEmprestimoService(EmprestimoService service) {

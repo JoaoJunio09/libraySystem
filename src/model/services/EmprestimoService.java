@@ -53,11 +53,15 @@ public class EmprestimoService {
 		return dao.filtragemCompleta(sql);
 	}
 	
-	public Map<Integer, ArrayList<Integer>> listarQuantidadeVendasPorMes() {
-		return dao.listarQuantidadeVendasPorMes();
+	public Map<Integer, ArrayList<Integer>> listarQuantidadeEmprestimosPorMes() {
+		return dao.listarQuantidadeEmprestimosPorMes();
 	}
 	
 	public List<Emprestimo> findAllStatusPendente() {
 		return dao.findAllStatusPendente();
+	}
+	
+	public Map<Integer, ArrayList<Integer>> listarQuantidadeEmprestimosDevolvidosPorMes() {
+		return dao.listarQuantidadeEmprestimosDevolvidosPorMes();
 	}
 }

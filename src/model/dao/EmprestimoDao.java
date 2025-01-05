@@ -22,7 +22,9 @@ public interface EmprestimoDao {
 
 	List<Emprestimo> filtragemCompleta(String sql);
 
-	Map<Integer, ArrayList<Integer>> listarQuantidadeVendasPorMes();
+	Map<Integer, ArrayList<Integer>> listarQuantidadeEmprestimosPorMes();
 	
 	List<Emprestimo> findAllStatusPendente();
+	
+	Map<Integer, ArrayList<Integer>> listarQuantidadeEmprestimosDevolvidosPorMes();
 }

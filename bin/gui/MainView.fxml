@@ -52,9 +52,13 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Configurações">
                     <items>
-                      <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" text="Sobre" />
                         <MenuItem fx:id="menuItemVersao" mnemonicParsing="false" text="Versão" />
                         <MenuItem fx:id="menuItemEspecificacaoDoProjeto" mnemonicParsing="false" text="Especificação do projeto" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Sobre">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Sobre" />
                     </items>
                   </Menu>
               </menus>

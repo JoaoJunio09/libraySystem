@@ -107,7 +107,7 @@ public class DevolucaoConfirmacaoController implements Initializable {
 	
 	private ObservableList<Cliente> obsListCliente;
 	
-	private ObservableList<Livro> obsListLivro; 
+	private ObservableList<Livro> obsListLivro;
 	
 	public void onBtConfirmarAction(ActionEvent event) {
 		if (service == null) {
@@ -123,10 +123,7 @@ public class DevolucaoConfirmacaoController implements Initializable {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
 			if (updateStatusDevolvido(entity)) {
-				System.out.println("true");
-			}
-			else {
-				System.out.println("false");
+				Alerts.showALert("Status atualizado",null, "Status atualizado para 'Devolvido'", AlertType.INFORMATION);
 			}
 			Livro livro = entity.getLivro();
 			if (updateEstoque(livro)) {
