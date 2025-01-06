@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
-import javax.accessibility.AccessibleHyperlink;
-
 import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
@@ -15,9 +13,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.entities.Usuario;
 import model.services.CategoriaService;
 import model.services.CidadeService;
 import model.services.ClienteService;
@@ -26,6 +27,14 @@ import model.services.EstadoService;
 import model.services.LivroService;
 
 public class MainViewController implements Initializable {
+	
+	private Usuario usuario;
+	
+	@FXML
+	private Menu menuUsuario;
+	
+	@FXML
+	private Menu menuAdministrativo;
 
 	@FXML
 	private MenuItem menuItemServico;
@@ -44,9 +53,6 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	private MenuItem menuItemCategoria;
-	
-	@FXML
-	private MenuItem menuItemCadastrarUsuario;
 	
 	@FXML
 	private MenuItem menuItemRelatorioEmprestimo;
@@ -71,6 +77,21 @@ public class MainViewController implements Initializable {
 	
 	@FXML
 	private MenuItem menuItemSite;
+	
+	@FXML
+	private MenuItem menuItemCadastrarUsuario;
+	
+	@FXML
+	private MenuItem menuItemSair;
+	
+	@FXML
+	private Label labelLoginUsuario;
+	
+	@FXML
+	private Label labelTipoUsuario;
+	
+	@FXML
+	private Label labelAdmin;
 	
 	@FXML
 	public void onMenuServicoAction() {
@@ -163,9 +184,9 @@ public class MainViewController implements Initializable {
 	public void onMenuItemSobreAction() {
 		loadView("/gui/SobreView.fxml", x -> {});
 	}
-
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
+	
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	protected synchronized <T> void loadView(String absoluteName, Consumer<T> initializing) {
@@ -183,11 +204,30 @@ public class MainViewController implements Initializable {
 			mainVBox.getChildren().addAll(newVBox);
 			
 			T controller = loader.getController();
-			initializing.accept(controller);
+			initializing.accept(controller);		
 		}
 		catch (IOException e) {
 			e.printStackTrace();
 			Alerts.showALert("IO Exception", "Erro ao carregar a view", e.getMessage(), AlertType.ERROR);
 		}
-	}	
+	}
+	
+	public void exibirUsuario() {
+		if (usuario == null) {
+			throw new IllegalStateException("Usuário é nulo");
+		}
+		
+		labelLoginUsuario.setText(usuario.getLogin());
+		labelTipoUsuario.setText(String.valueOf(usuario.getTipo()));
+		labelAdmin.setText((usuario.getTipo() == 1) ? "Sim" : "Não");
+		
+		if (usuario.getTipo() == 2) {
+			menuUsuario.setDisable(true);
+			menuAdministrativo.setDisable(true);
+		}
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+	}
 }

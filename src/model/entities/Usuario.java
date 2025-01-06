@@ -3,17 +3,18 @@ package model.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Admin implements Serializable {
+public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String login;
 	private String senha;
+	private Integer tipo;
 	
-	public Admin() {
+	public Usuario() {
 	}
 
-	public Admin(Integer id, String login, String senha) {
+	public Usuario(Integer id, String login, String senha) {
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
@@ -42,6 +43,14 @@ public class Admin implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	public Integer getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(Integer tipo) {
+		this.tipo = tipo;
+	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -60,12 +69,12 @@ public class Admin implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Admin other = (Admin) obj;
+		Usuario other = (Usuario) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
-		return "Admin [id=" + id + ", login=" + login + ", senha=" + senha + "]";
+		return "Usuario [id=" + id + ", login=" + login + ", senha=" + senha + ", tipo=" + tipo + "]";
 	}
 }

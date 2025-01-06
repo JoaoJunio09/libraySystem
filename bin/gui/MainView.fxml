@@ -33,16 +33,6 @@
                         <MenuItem fx:id="menuItemCategoria" mnemonicParsing="false" onAction="#onMenuItemCategoriaAction" text="Categoria" />
                   </items>
                 </Menu>
-                  <Menu mnemonicParsing="false" text="Graficos">
-                    <items>
-                        <MenuItem fx:id="menuItemGraficos" mnemonicParsing="false" onAction="#onMenuItemGraficosAction" text="Emprestimo" />
-                    </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Relatorios">
-                    <items>
-                      <MenuItem fx:id="menuItemRelatorioEmprestimo" mnemonicParsing="false" onAction="#onMenuItemRelatorioEmprestimoAction" text="Emprestimo" />
-                    </items>
-                  </Menu>
                   <Menu mnemonicParsing="false" text="Ajuda">
                     <items>
                       <MenuItem fx:id="menuItemContato" mnemonicParsing="false" onAction="#onMenuItemContatoAction" text="Contato" />
@@ -59,6 +49,22 @@
                   <Menu mnemonicParsing="false" text="Sobre">
                     <items>
                       <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#onMenuItemSobreAction" text="Sobre" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="menuUsuario" mnemonicParsing="false" text="Usuário">
+                    <items>
+                      <MenuItem fx:id="menuItemCadastrarUsuario" mnemonicParsing="false" text="Cadastrar novo usuário" />
+                    </items>
+                  </Menu>
+                  <Menu fx:id="menuAdministrativo" mnemonicParsing="false" text="Administrativo">
+                     <items>
+                        <MenuItem fx:id="menuItemGraficos" mnemonicParsing="false" onAction="#onMenuItemGraficosAction" text="Gráficos Empréstimo" />
+                      <MenuItem fx:id="menuItemRelatorioEmprestimo" mnemonicParsing="false" onAction="#onMenuItemRelatorioEmprestimoAction" text="Relatórios Empréstimo" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Sair">
+                    <items>
+                      <MenuItem fx:id="menuItemSair" mnemonicParsing="false" text="Sair" />
                     </items>
                   </Menu>
               </menus>
@@ -79,6 +85,33 @@
                   <Label layoutX="299.0" layoutY="139.0" text="Libray System - Minha Biblioteca">
                      <font>
                         <Font name="Avant Garde Book BT" size="35.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane layoutX="800.0" layoutY="432.0" prefHeight="126.0" prefWidth="285.0" style="-fx-border-color: black;">
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Login:" />
+                        <Label fx:id="labelLoginUsuario" layoutX="75.0" layoutY="14.0" text="example@example.com" textFill="RED">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="49.0" text="Tipo:" />
+                        <Label fx:id="labelTipoUsuario" layoutX="75.0" layoutY="49.0" text="Funcionário/Admin" textFill="RED">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="86.0" text="Admin:" />
+                        <Label fx:id="labelAdmin" layoutX="75.0" layoutY="86.0" text="Sim/Não" textFill="RED">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="800.0" layoutY="411.0" text="Usuário">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
                </children>

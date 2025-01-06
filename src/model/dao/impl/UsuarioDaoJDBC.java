@@ -11,27 +11,28 @@ import java.util.List;
 import db.DB;
 import db.DbException;
 import model.dao.CRUD;
-import model.entities.Admin;
+import model.entities.Usuario;
 
-public class AdminDaoJDBC implements CRUD<Admin> {
+public class UsuarioDaoJDBC implements CRUD<Usuario> {
 	
 	private Connection conn = null;
 	
-	public AdminDaoJDBC(Connection conn) {
+	public UsuarioDaoJDBC(Connection conn) {
 		this.conn = conn;
 	}
 
 	@Override
-	public boolean insert(Admin obj) {
+	public boolean insert(Usuario obj) {
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO tb_login "
-					+ "(Login, Senha) "
+		String sql = "INSERT INTO tb_usuario "
+					+ "(Login, Senha, Tipo) "
 					+ "VALUES "
-					+ "(?, ?)";
+					+ "(?, ?, ?)";
 		try {
 			stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, obj.getLogin());
 			stmt.setString(2, obj.getSenha());
+			stmt.setInt(3, obj.getTipo());
 			
 			int linhasAfetadas = stmt.executeUpdate();
 			
@@ -58,17 +59,17 @@ public class AdminDaoJDBC implements CRUD<Admin> {
 	}
 
 	@Override
-	public boolean update(Admin obj) {
+	public boolean update(Usuario obj) {
 		PreparedStatement stmt = null;
-		String sql = "UPDATE tb_login "
-					+ "SET Nome = ?, Sigla = ? "
+		String sql = "UPDATE tb_usuario "
+					+ "SET Nome = ?, Sigla = ?, Tipo = ? "
 					+ "WHERE Id = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, obj.getLogin());
 			stmt.setString(2, obj.getSenha());
-			stmt.setInt(3, obj.getId());
-			
+			stmt.setInt(3, obj.getTipo());
+			stmt.setInt(4, obj.getId());
 			stmt.executeUpdate();
 			return true;
 		}
@@ -83,7 +84,7 @@ public class AdminDaoJDBC implements CRUD<Admin> {
 	@Override
 	public boolean deleteById(Integer id) {
 		PreparedStatement stmt = null;
-		String sql = "DELETE FROM tb_login WHERE Id = ?";
+		String sql = "DELETE FROM tb_usuario WHERE Id = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
 			
@@ -102,16 +103,16 @@ public class AdminDaoJDBC implements CRUD<Admin> {
 	}
 
 	@Override
-	public Admin findById(Integer id) {
+	public Usuario findById(Integer id) {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM tb_login WHERE Id = ?";
+		String sql = "SELECT * FROM tb_usuario WHERE Id = ?";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, id);
 			rs = stmt.executeQuery();
 			if (rs.next()) {
-				Admin obj = instanciaAdmin(rs);
+				Usuario obj = instanciaAdmin(rs);
 				return obj;
 			}
 			return null;
@@ -126,16 +127,16 @@ public class AdminDaoJDBC implements CRUD<Admin> {
 	}
 
 	@Override
-	public List<Admin> findAll() {
+	public List<Usuario> findAll() {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT * FROM tb_login";
+		String sql = "SELECT * FROM tb_usuario";
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
-			List<Admin> list = new ArrayList<Admin>();
+			List<Usuario> list = new ArrayList<Usuario>();
 			while (rs.next()) {
-				Admin obj = instanciaAdmin(rs);
+				Usuario obj = instanciaAdmin(rs);
 				list.add(obj);
 			}
 			return list;
@@ -149,11 +150,12 @@ public class AdminDaoJDBC implements CRUD<Admin> {
 		}
 	}
 	
-	private Admin instanciaAdmin(ResultSet rs) throws SQLException {
-		Admin obj = new Admin();
+	private Usuario instanciaAdmin(ResultSet rs) throws SQLException {
+		Usuario obj = new Usuario();
 		obj.setId(rs.getInt("Id"));
 		obj.setLogin(rs.getString("Login"));
 		obj.setSenha(rs.getString("Senha"));
+		obj.setTipo(rs.getInt("Tipo"));
 		return obj;
 	}
 }

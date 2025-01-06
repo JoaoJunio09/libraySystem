@@ -1,6 +1,7 @@
 package model.dao;
 
 import db.DB;
+import model.dao.impl.UsuarioDaoJDBC;
 import model.dao.impl.CategoriaDaoJDBC;
 import model.dao.impl.CidadeDaoJDBC;
 import model.dao.impl.ClienteDaoJDBC;
@@ -8,6 +9,7 @@ import model.dao.impl.EmprestimoDaoJDBC;
 import model.dao.impl.EstadoDaoJDBC;
 import model.dao.impl.FornecedorDaoJDBC;
 import model.dao.impl.LivroDaoJDBC;
+import model.entities.Usuario;
 import model.entities.Categoria;
 import model.entities.Cidade;
 import model.entities.Estado;
@@ -15,6 +17,10 @@ import model.entities.Fornecedor;
 
 public class DaoFactory {
 
+	public static CRUD<Usuario> createUsuarioDaoJDBC() {
+		return new UsuarioDaoJDBC(DB.getConnection());
+	}
+	
 	public static ClienteDao createClienteDaoJDBC() {
 		return new ClienteDaoJDBC(DB.getConnection());
 	}
