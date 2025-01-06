@@ -53,7 +53,7 @@
                   </Menu>
                   <Menu fx:id="menuUsuario" mnemonicParsing="false" text="Usuário">
                     <items>
-                      <MenuItem fx:id="menuItemCadastrarUsuario" mnemonicParsing="false" text="Cadastrar novo usuário" />
+                      <MenuItem fx:id="menuItemCadastrarUsuario" mnemonicParsing="false" onAction="#onMenuItemCadastrarUsuarioAction" text="Cadastrar novo usuário" />
                     </items>
                   </Menu>
                   <Menu fx:id="menuAdministrativo" mnemonicParsing="false" text="Administrativo">

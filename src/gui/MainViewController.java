@@ -25,6 +25,7 @@ import model.services.ClienteService;
 import model.services.EmprestimoService;
 import model.services.EstadoService;
 import model.services.LivroService;
+import model.services.UsuarioService;
 
 public class MainViewController implements Initializable {
 	
@@ -183,6 +184,16 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onMenuItemSobreAction() {
 		loadView("/gui/SobreView.fxml", x -> {});
+	}
+	
+	@FXML
+	public void onMenuItemCadastrarUsuarioAction() {
+		loadView("/gui/CadastrarUsuarioView.fxml", (CadastrarUsuarioController controller) -> {
+			controller.setUsuario(new Usuario());
+			controller.setUsuarioService(new UsuarioService());
+			controller.associandoTipoDeUsuario();
+			controller.atualizaDadosFormulario();
+		});
 	}
 	
 	public void setUsuario(Usuario usuario) {

@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import gui.listeners.DataChangeListener;
 import gui.util.Alerts;
@@ -29,7 +28,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.entities.Cliente;

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CadastrarUsuarioController">
+   <children>
+      <Label text="Cadastrar Usuário">
+         <font>
+            <Font name="Ebrima" size="20.0" />
+         </font>
+         <VBox.margin>
+            <Insets left="20.0" top="10.0" />
+         </VBox.margin>
+      </Label>
+      <GridPane prefHeight="348.0" prefWidth="1060.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.0" minWidth="0.0" prefWidth="135.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="707.0" minWidth="10.0" prefWidth="478.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="447.0" minWidth="10.0" prefWidth="447.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Id" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Ebrima" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Login" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Ebrima" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Senha" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Ebrima" size="15.0" />
+               </font>
+            </Label>
+            <Label text="Tipo" GridPane.rowIndex="4">
+               <font>
+                  <Font name="Ebrima" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtId" editable="false" prefHeight="50.0" prefWidth="109.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="txtLogin" prefHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <PasswordField fx:id="pswSenha" prefHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBoxTipo" prefHeight="50.0" prefWidth="115.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="labelErrorLogin" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="labelErrorSenha" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="labelErrorTipo" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets left="20.0" right="20.0" />
+         </VBox.margin>
+      </GridPane>
+      <AnchorPane prefHeight="226.0" prefWidth="1100.0">
+         <children>
+            <Button fx:id="onBtCadastrar" layoutX="928.0" layoutY="136.0" mnemonicParsing="false" onAction="#onBtCadastrarAction" prefHeight="50.0" prefWidth="157.0" style="-fx-background-color: green;" text="Cadastrar" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <AnchorPane layoutX="29.0" layoutY="71.0" prefHeight="116.0" prefWidth="314.0" style="-fx-background-color: gray;">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Tipos de usuários.-" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="41.0" text="1 - Administrador: Todas funcionalidades" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="71.0" text="2 - Padrão: Funcionalidades limitadas" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

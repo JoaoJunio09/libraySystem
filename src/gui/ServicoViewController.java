@@ -5,16 +5,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
-import application.Main;
 import gui.util.Alerts;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.services.ClienteService;
